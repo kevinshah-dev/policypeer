@@ -28,10 +28,6 @@ export default function Home() {
               </Link>
             </nav>
           </div>
-          <div className="flex items-center gap-4">
-            <Button variant="outline">For Employers</Button>
-            <Button>Sign In</Button>
-          </div>
         </div>
       </header>
 
