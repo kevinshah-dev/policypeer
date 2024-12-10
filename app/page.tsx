@@ -47,7 +47,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid gap-6">
+        <div className="grid gap-6 pl-3">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold">Trending Providers</h2>
             <Button variant="link">View All</Button>
