@@ -2,7 +2,7 @@ import { Search } from 'lucide-react'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import JobCard from "@/components/job-card"
+import CompanyCard from "@/components/company-card"
 
 export default function Home() {
   return (
@@ -27,6 +27,7 @@ export default function Home() {
                 Community
               </Link>
             </nav>
+            <Button>Sign In</Button>
           </div>
         </div>
       </header>
@@ -53,40 +54,40 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <JobCard
+            <CompanyCard
               company="State Farm"
               salary="$174K - $194K"
               isPromoted
             />
-            <JobCard
+            <CompanyCard
               company="GEICO"
               salary="$176,000"
             />
-            <JobCard
+            <CompanyCard
               company="Progressive"
               salary="$191,800"
             />
-            <JobCard
+            <CompanyCard
               company="Allstate"
               salary="$450,000"
             />
-            <JobCard
+            <CompanyCard
               company="USAA"
               salary="$185,700"
             />
-            <JobCard
+            <CompanyCard
               company="Liberty Mutual"
               salary="$210,000"
             />
-            <JobCard
+            <CompanyCard
               company="Travelers"
               salary="$180,000"
             />
-            <JobCard
+            <CompanyCard
               company="Nationwide"
               salary="$165,000"
             />
-            <JobCard
+            <CompanyCard
               company="Farmers Insurance"
               salary="$240,000"
             />

@@ -2,17 +2,17 @@ import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronRight } from "lucide-react"
 
-interface JobCardProps {
+interface CompanyCardProps {
   company: string
   salary: string
   isPromoted?: boolean
 }
 
-export default function JobCard({
+export default function CompanyCard({
   company,
   salary,
   isPromoted = false,
-}: JobCardProps) {
+}: CompanyCardProps) {
   return (
     <Card className="overflow-hidden h-full">
       <CardContent className="p-6">
