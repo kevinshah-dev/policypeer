@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="border-b bg-white">
-        <div className="container flex h-16 items-center justify-between">
+        <div className="container mx-auto px-4 flex h-16 items-center">
           <div className="flex items-center gap-4">
-            <Link href="/" className="text-xl font-bold pl-4">
+            <Link href="/" className="text-xl font-bold">
               Premio
             </Link>
             <nav className="hidden md:flex items-center gap-6">
