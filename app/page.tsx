@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       <header className="border-b bg-white">
-        <div className="container mx-auto px-4 flex h-16 items-center">
-          <div className="flex items-center gap-4">
+        <div className="container mx-auto px-4 flex h-16 items-center justify-between">
+          <div className="flex items-center gap-6 -ml-3">
             <Link href="/" className="text-xl font-bold">
               Premio
             </Link>
@@ -27,8 +27,10 @@ export default function Home() {
                 Community
               </Link>
             </nav>
-            <Button>Sign In</Button>
           </div>
+          <Link href="/login">
+              <Button>Sign In</Button>
+          </Link>
         </div>
       </header>
 
@@ -41,13 +43,19 @@ export default function Home() {
           <div className="max-w-2xl mx-auto relative">
             <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
             <Input
-              placeholder="Search by Company, Title or City"
+              placeholder="Search by Company"
               className="pl-10 h-12"
             />
           </div>
+          <div className="mt-4 flex justify-center">
+              <Link href="/addclaim">
+                <Button size="lg">
+                  Add Your Claim
+                </Button>
+              </Link>
+          </div>
         </div>
-
-        <div className="grid gap-6 pl-3">
+        <div className="grid gap-6 pl-7">
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold">Trending Providers</h2>
             <Button variant="link">View All</Button>
