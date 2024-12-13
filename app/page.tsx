@@ -11,7 +11,7 @@ export default function Home() {
         <div className="container mx-auto px-4 flex h-16 items-center justify-between">
           <div className="flex items-center gap-6 -ml-3">
             <Link href="/" className="text-xl font-bold">
-              Premio
+              PolicyPeer
             </Link>
             <nav className="hidden md:flex items-center gap-6">
               <Link href="/companies" className="text-sm font-medium">
@@ -21,7 +21,7 @@ export default function Home() {
                 Quotes
               </Link>
               <Link href="/services" className="text-sm font-medium">
-                Services
+                Privacy Policy
               </Link>
               <Link href="/community" className="text-sm font-medium">
                 Community

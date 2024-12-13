@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronRight } from "lucide-react"
+import Link from "next/link"
 
 interface CompanyCardProps {
   company: string
@@ -26,10 +27,13 @@ export default function CompanyCard({
                 </Badge>
               )}
             </div>
-            <p className="text-sm text-muted-foreground flex items-center gap-1">
+            <Link 
+              href={`/companies/${company.toLowerCase().replace(/\s+/g, '-')}`}
+              className="text-sm text-muted-foreground flex items-center gap-1 hover:underline"
+            >
                 View Policies
                 <ChevronRight className="w-4 h-4" />
-            </p>
+            </Link>
           </div>
           <div className="text-right">
             <p className="font-bold">{salary}</p>
