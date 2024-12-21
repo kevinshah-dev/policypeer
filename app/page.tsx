@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import CompanyCard from "@/components/company-card"
 import { useState } from 'react'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
-
+import MobileNav from '@/lib/mobile/mobilenav'
 
 type InsuranceProvider = {
   name: string
@@ -71,6 +71,7 @@ export default function Home() {
                 Support
               </Link>
             </nav>
+            <MobileNav />
           </div>
           <Link href="/login">
               <Button>Sign In</Button>
