@@ -16,9 +16,87 @@ import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import Link from "next/link"
 import { Upload } from 'lucide-react'
+import { useState } from "react"
+import { supabase } from "@/lib/supabase"
+import { useRouter } from "next/navigation"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 
 export default function AddInsuranceClaim() {
+
+  const router = useRouter()
+  const [showModal, setShowModal] = useState(false)
+
+
+  const [formData, setFormData] = useState({
+    company: '',
+    premium: '',
+    coverageType: '',
+    deductible: '',
+    coverageLimit: '',
+    planDetails: '',
+    submissionType: 'new'
+  })
+
+  const handleCompanyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, company: e.target.value })
+  }
+
+  const handlePremiumChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, premium: e.target.value })
+  }
+
+  const handleCoverageTypeChange = (value: string) => {
+    setFormData({ ...formData, coverageType: value })
+  }
+
+  const handleDeductibleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, deductible: e.target.value })
+  }
+
+  const handleSubmissionTypeChange = (value: string) => {
+    setFormData({ ...formData, submissionType: value })
+  }
+
+  const handleCoverageLimitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, coverageLimit: e.target.value })
+  }
+
+  const handlePlanDetailsChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setFormData({ ...formData, planDetails: e.target.value })
+  }
+
+  const handleSubmit = async () => {
+    try {
+      const { error } = await supabase
+        .from('claims')
+        .insert(formData)
+
+      if (error) throw error
+
+      setShowModal(true)
+      setTimeout(() => {
+        setShowModal(false)
+        router.push('/')
+      }, 2500)
+    } catch (error) {
+      console.error('Error submitting insurance claim:', error)
+    }
+  }
+
   return (
+    <>
+
+      <Dialog open={showModal} onOpenChange={setShowModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>Thank you for submitting your policy!</DialogTitle>
+          </DialogHeader>
+          <div className="text-center py-4">
+            <p>Your submission has been received. Redirecting...</p>
+          </div>
+        </DialogContent>
+      </Dialog>
+
     <div className="container max-w-2xl mx-auto py-12 px-4">
       <div className="text-center mb-8">
         <h1 className="text-3xl font-bold mb-2">Add Your Insurance Claim</h1>
@@ -51,15 +129,20 @@ export default function AddInsuranceClaim() {
               <div className="space-y-4">
                 <div>
                   <Label htmlFor="company">Insurance Company</Label>
-                  <Input id="company" placeholder="e.g. State Farm, GEICO" />
-                </div>
-                <div>
-                  <Label htmlFor="plan-type">Plan Type</Label>
-                  <Input id="plan-type" placeholder="e.g. Auto Insurance, Home Insurance" />
+                  <Input 
+                    id="company" 
+                    placeholder="e.g. State Farm, GEICO" 
+                    onChange={handleCompanyChange}
+                  />
                 </div>
                 <div>
                   <Label htmlFor="premium">Monthly Premium</Label>
-                  <Input id="premium" placeholder="e.g. $150" type="number" />
+                  <Input 
+                    id="premium" 
+                    placeholder="e.g. $150" 
+                    type="number" 
+                    onChange={handlePremiumChange}
+                  />
                 </div>
               </div>
             </div>
@@ -69,7 +152,9 @@ export default function AddInsuranceClaim() {
               <div className="grid gap-4">
                 <div>
                   <Label htmlFor="coverage-type">Coverage Type</Label>
-                  <Select>
+                  <Select
+                    onValueChange={handleCoverageTypeChange}
+                  >
                     <SelectTrigger>
                       <SelectValue placeholder="Select coverage type" />
                     </SelectTrigger>
@@ -83,11 +168,21 @@ export default function AddInsuranceClaim() {
                 </div>
                 <div>
                   <Label htmlFor="deductible">Deductible Amount</Label>
-                  <Input id="deductible" placeholder="e.g. $500" type="number" />
+                  <Input 
+                    id="deductible" 
+                    placeholder="e.g. $500" 
+                    type="number" 
+                    onChange={handleDeductibleChange} 
+                  />
                 </div>
                 <div>
                   <Label htmlFor="coverage-limit">Coverage Limit</Label>
-                  <Input id="coverage-limit" placeholder="e.g. $100,000" type="number" />
+                  <Input 
+                    id="coverage-limit" 
+                    placeholder="e.g. $100,000" 
+                    type="number" 
+                    onChange={handleCoverageLimitChange}
+                  />
                 </div>
               </div>
             </div>
@@ -101,11 +196,16 @@ export default function AddInsuranceClaim() {
                     id="plan-details"
                     placeholder="Describe any additional coverage, special terms, or notable features of your plan"
                     className="h-24"
+                    onChange={handlePlanDetailsChange}
                   />
                 </div>
                 <div>
                   <Label className="mb-2 block">Submission Type</Label>
-                  <RadioGroup defaultValue="new" className="flex gap-4">
+                  <RadioGroup 
+                    defaultValue="new" 
+                    className="flex gap-4"
+                    onValueChange={handleSubmissionTypeChange}
+                  >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="new" id="new" />
                       <Label htmlFor="new">New Policy</Label>
@@ -119,10 +219,10 @@ export default function AddInsuranceClaim() {
               </div>
             </div>
           </div>
-
-          <Button className="w-full mt-8">Submit Insurance Information</Button>
+          <Button className="w-full mt-8" onClick={handleSubmit}>Submit Insurance Information</Button>
         </CardContent>
       </Card>
     </div>
+    </>
   )
 }
