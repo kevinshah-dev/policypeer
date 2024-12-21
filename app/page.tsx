@@ -101,7 +101,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
               <h2 className="text-2xl font-bold">Trending</h2>
               <Select 
                 value={selectedInsurance} 
@@ -133,7 +133,7 @@ export default function Home() {
           </div>      
       </main>
       <section className="py-8">
-  <h2 className="text-2xl font-bold mb-4 text-center">How PolicyPeer Works</h2>
+  <h2 className="text-2xl font-bold mb-4 text-center">Why PolicyPeer?</h2>
   <div className="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
     <div>
     <Zap className="mx-auto mb-2" />
