@@ -68,7 +68,7 @@ export default function AddInsuranceClaim() {
   const handleSubmit = async () => {
     try {
       const { error } = await supabase
-        .from('claims')
+        .from('policies')
         .insert(formData)
 
       if (error) throw error
