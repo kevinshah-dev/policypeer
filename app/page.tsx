@@ -53,7 +53,6 @@ export default function Home() {
     <div className="min-h-screen bg-gray-50">
       <header className="border-b bg-white">
         <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-          <div className="flex items-center gap-6 -ml-3">
             <Link href="/" className="text-xl font-bold text-red-600">
               PolicyPeer
             </Link>
@@ -71,11 +70,12 @@ export default function Home() {
                 Support
               </Link>
             </nav>
+          <div className="flex items-center gap-4">
             <MobileNav />
-          </div>
-          <Link href="/login">
+            <Link href="/login">
               <Button>Sign In</Button>
-          </Link>
+            </Link>
+          </div>
         </div>
       </header>
 
