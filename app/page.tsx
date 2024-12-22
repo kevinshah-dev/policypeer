@@ -57,16 +57,16 @@ export default function Home() {
               PolicyPeer
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/companies" className="text-sm font-medium text-red-600 hover:text-red-500">
+              <Link href="/companies" className="text-lg font-large text-red-600 hover:text-red-500">
                 Companies
               </Link>
-              <Link href="/quotes" className="text-sm font-medium text-red-600 hover:text-red-500">
+              <Link href="/quotes" className="text-lg font-large text-red-600 hover:text-red-500">
                 Quotes
               </Link>
-              <Link href="/privacy" className="text-sm font-medium text-red-600 hover:text-red-500">
+              <Link href="/privacy" className="text-lg font-large text-red-600 hover:text-red-500">
                 Privacy Policy
               </Link>
-              <Link href="/support" className="text-sm font-medium text-red-600 hover:text-red-500">
+              <Link href="/support" className="text-lg font-large text-red-600 hover:text-red-500">
                 Support
               </Link>
             </nav>
@@ -100,7 +100,7 @@ export default function Home() {
               </Link>
           </div>
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
               <h2 className="text-2xl font-bold">Trending</h2>
               <Select 
