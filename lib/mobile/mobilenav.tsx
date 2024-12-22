@@ -5,7 +5,7 @@ export default function MobileNav() {
     const [isOpen, setIsOpen] = useState(false)
   
     return (
-      <div className="md:hidden">
+      <div className="md:hidden lg:hidden">
         <button
           className="text-red-600"
           onClick={() => setIsOpen(!isOpen)}
