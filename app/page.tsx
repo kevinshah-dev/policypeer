@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, Star, Share2, Save, Zap, CircleDollarSign } from 'lucide-react'
+import { Search, Star, Share2, Zap, CircleDollarSign } from 'lucide-react'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
