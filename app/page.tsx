@@ -1,6 +1,6 @@
 'use client'
 
-import { Search, Star, Share2, Save, Zap } from 'lucide-react'
+import { Search, Star, Share2, Save, Zap, CircleDollarSign } from 'lucide-react'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -57,16 +57,16 @@ export default function Home() {
               PolicyPeer
             </Link>
             <nav className="hidden md:flex items-center gap-6">
-              <Link href="/companies" className="text-lg font-large text-red-600 hover:text-red-500">
+              <Link href="/companies" className="text-lg font-bold text-red-600 hover:text-red-500">
                 Companies
               </Link>
-              <Link href="/quotes" className="text-lg font-large text-red-600 hover:text-red-500">
+              <Link href="/quotes" className="text-lg font-bold text-red-600 hover:text-red-500">
                 Quotes
               </Link>
-              <Link href="/privacy" className="text-lg font-large text-red-600 hover:text-red-500">
+              <Link href="/privacy" className="text-lg font-bold text-red-600 hover:text-red-500">
                 Privacy Policy
               </Link>
-              <Link href="/support" className="text-lg font-large text-red-600 hover:text-red-500">
+              <Link href="/support" className="text-lg font-bold text-red-600 hover:text-red-500">
                 Support
               </Link>
             </nav>
@@ -151,7 +151,7 @@ export default function Home() {
       <p className="text-sm text-muted-foreground">Help others learn from real claim stories.</p>
     </div>
     <div>
-    <Save className="mx-auto mb-2" />
+    <CircleDollarSign className="mx-auto mb-2" />
       <h3 className="font-semibold">Save</h3>
       <p className="text-sm text-muted-foreground">Make smarter decisions with transparent data.</p>
     </div>
