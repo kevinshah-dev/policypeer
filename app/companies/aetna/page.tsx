@@ -10,17 +10,20 @@ import { CompanyOverview } from "./company-overview"
 import { CompanyReviews } from "./company-reviews"
 import { ClaimHistory } from "./claim-history"
 import { PolicyInformation } from "./policy-information"
+import { NavBar } from "@/components/navbar"
+import { navLinks } from "@/lib/navigation"
 
 export default function CompanyProfile() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row items-start gap-6">
             <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
               <Image
-                src="/placeholder.svg"
-                alt="State Farm Logo"
+                src="/aetna.png"
+                alt="Aetna Logo"
                 width={80}
                 height={80}
                 className="object-contain"

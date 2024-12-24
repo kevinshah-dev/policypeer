@@ -10,17 +10,21 @@ import { CompanyOverview } from "./company-overview"
 import { CompanyReviews } from "./company-reviews"
 import { ClaimHistory } from "./claim-history"
 import { PolicyInformation } from "./policy-information"
+import { NavBar } from "@/components/navbar"
+import { navLinks } from "@/lib/navigation"
 
 export default function CompanyProfile() {
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row items-start gap-6">
             <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
               <Image
-                src="/placeholder.svg"
-                alt="State Farm Logo"
+                src="/elevancehealth.jpg"
+                alt="Elevance Health Logo"
                 width={80}
                 height={80}
                 className="object-contain"
@@ -87,14 +91,14 @@ export default function CompanyProfile() {
                   <Building2 className="w-5 h-5 text-blue-500" />
                   <div>
                     <div className="font-medium">Founded</div>
-                    <div className="text-sm text-muted-foreground">1922, Bloomington, IL</div>
+                    <div className="text-sm text-muted-foreground">1946, Indianapolis, IN</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <DollarSign className="w-5 h-5 text-blue-500" />
                   <div>
                     <div className="font-medium">Revenue</div>
-                    <div className="text-sm text-muted-foreground">$89.3B (2023)</div>
+                    <div className="text-sm text-muted-foreground">$171.34 Billion (2023)</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
@@ -108,7 +112,7 @@ export default function CompanyProfile() {
                   <FileCheck className="w-5 h-5 text-blue-500" />
                   <div>
                     <div className="font-medium">Claims Satisfaction</div>
-                    <div className="text-sm text-muted-foreground">4.5/5 (Industry: 4.2)</div>
+                    <div className="text-sm text-muted-foreground">3.2/5 (Industry: 4.2)</div>
                   </div>
                 </div>
               </div>

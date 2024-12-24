@@ -6,14 +6,14 @@ import Link from "next/link"
 interface CompanyCardProps {
   company: string
   premium: string
-  isPromoted?: boolean
+  isMostViewed?: boolean
   rating?: number
 }
 
 export default function CompanyCard({
   company,
   premium,
-  isPromoted = false,
+  isMostViewed = false,
   rating = 0,
 }: CompanyCardProps) {
   return (
@@ -29,9 +29,9 @@ export default function CompanyCard({
                 <h3>{company}</h3>
               </Link>
 
-              {isPromoted && (
+              {isMostViewed && (
                 <Badge variant="secondary" className="text-xs">
-                  Promoted
+                  Most Viewed
                 </Badge>
               )}
             </div>

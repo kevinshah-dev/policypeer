@@ -7,12 +7,14 @@ import { Input } from "@/components/ui/input"
 import CompanyCard from "@/components/company-card"
 import { useState } from 'react'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
-import MobileNav from '@/lib/mobile/mobilenav'
+//import MobileNav from '@/lib/mobile/mobilenav'
+import { NavBar } from '@/components/navbar'
+import { navLinks } from '@/lib/navigation'
 
 type InsuranceProvider = {
   name: string
   premium: string
-  isPromoted?: boolean
+  isMostViewed?: boolean
   rating: number
 }
 
@@ -26,7 +28,7 @@ export default function Home() {
 
   const insuranceProviders: InsuranceProviders = {
     car: [
-      { name: "State Farm", premium: "$50 - $124/mo", isPromoted: true, rating: 4.4 },
+      { name: "State Farm", premium: "$50 - $124/mo", isMostViewed: true, rating: 4.4 },
       { name: "GEICO", premium: "$40 - $131/mo", rating: 4.2 },
       { name: "Progressive", premium: "$58 - $169/mo", rating: 3.8 },
       { name: "Allstate", premium: "$71 - $215/mo", rating: 3.4 },
@@ -37,7 +39,7 @@ export default function Home() {
       { name: "Farmers Insurance", premium: "$78 - $251/mo", rating: 3.3 },
     ],
     health: [
-      { name: "UnitedHealthcare", premium: "$250 - $524/mo", isPromoted: true, rating: 2.8 },
+      { name: "UnitedHealthcare", premium: "$250 - $524/mo", isMostViewed: true, rating: 2.8 },
       { name: "Elevance Health", premium: "$280 - $631/mo", rating: 2.1 },
       { name: "Aetna", premium: "$258 - $469/mo", rating: 2.3 },
       { name: "Cigna", premium: "$271 - $515/mo", rating: 2.4 },
@@ -48,36 +50,10 @@ export default function Home() {
 
   const [selectedInsurance, setSelectedInsurance] = useState<'car' | 'health'>('health');
 
-
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="border-b bg-white">
-        <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-            <Link href="/" className="text-xl font-bold text-red-600">
-              PolicyPeer
-            </Link>
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/companies" className="text-lg font-bold text-red-600 hover:text-red-500">
-                Companies
-              </Link>
-              <Link href="/quotes" className="text-lg font-bold text-red-600 hover:text-red-500">
-                Quotes
-              </Link>
-              <Link href="/privacy" className="text-lg font-bold text-red-600 hover:text-red-500">
-                Privacy
-              </Link>
-              <Link href="/support" className="text-lg font-bold text-red-600 hover:text-red-500">
-                Support
-              </Link>
-            </nav>
-          <div className="flex items-center gap-4">
-            <MobileNav />
-            <Link href="/login">
-              <Button>Sign In</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
+
 
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
@@ -131,7 +107,7 @@ export default function Home() {
                 key={provider.name}
                 company={provider.name}
                 premium={provider.premium}
-                isPromoted={provider.isPromoted}
+                isMostViewed={provider.isMostViewed}
                 rating={provider.rating}
               />
             ))}

@@ -63,7 +63,7 @@ export default function AddPolicyType() {
           </div>
 
         </div>
-        <div className="text-center mt-8">
+        <div className="text-center mt-16">
             <Button onClick={() => router.back()} className="bg-red-600 hover:bg-red-500 font-bold">
                 Go Back
             </Button>
