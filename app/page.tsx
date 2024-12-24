@@ -64,7 +64,7 @@ export default function Home() {
                 Quotes
               </Link>
               <Link href="/privacy" className="text-lg font-bold text-red-600 hover:text-red-500">
-                Privacy Policy
+                Privacy
               </Link>
               <Link href="/support" className="text-lg font-bold text-red-600 hover:text-red-500">
                 Support
@@ -93,7 +93,7 @@ export default function Home() {
             />
           </div>
           <div className="mt-4 flex justify-center gap-4">
-              <Link href="/addclaim">
+              <Link href="/addpolicytype">
                 <Button size="lg" className="bg-red-600 hover:bg-red-500 font-bold">
                   Add Your Policy
                 </Button>

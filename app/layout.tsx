@@ -17,6 +17,9 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "PolicyPeer",
   description: "PolicyPeer is a platform for insurance policy, price, and claim data",
+  icons: {
+    icon: "/favicon.ico",
+  }
 };
 
 export default function RootLayout({
