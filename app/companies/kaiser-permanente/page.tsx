@@ -10,10 +10,14 @@ import { CompanyOverview } from "./company-overview"
 import { CompanyReviews } from "./company-reviews"
 import { ClaimHistory } from "./claim-history"
 import { PolicyInformation } from "./policy-information"
+import { NavBar } from "@/components/navbar"
+import { navLinks } from "@/lib/navigation"
+
 
 export default function CompanyProfile() {
   return (
     <div className="min-h-screen bg-gray-50">
+      <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col md:flex-row items-start gap-6">
@@ -29,7 +33,7 @@ export default function CompanyProfile() {
             <div className="flex-1">
               <div className="flex flex-col md:flex-row md:items-center gap-4 justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold">Kaiser Perma</h1>
+                  <h1 className="text-3xl font-bold">Kaiser Permanente</h1>
                   <div className="flex items-center gap-2 mt-2">
                     <div className="flex items-center">
                       <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />

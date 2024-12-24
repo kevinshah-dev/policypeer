@@ -57,6 +57,9 @@ export function NavBar({
         </nav>
         <div className="flex items-center gap-4">
           <MobileNav /> {/* Mobile Nav component, assuming it exists */}
+          <Link href="/signup">
+            <Button>Sign Up</Button>
+          </Link>
           <Link href={signInHref}>
             <Button>Sign In</Button>
           </Link>

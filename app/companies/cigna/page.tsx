@@ -19,8 +19,8 @@ export default function CompanyProfile() {
           <div className="flex flex-col md:flex-row items-start gap-6">
             <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
               <Image
-                src="/placeholder.svg"
-                alt="State Farm Logo"
+                src="/cigna.png"
+                alt="Cigna"
                 width={80}
                 height={80}
                 className="object-contain"
@@ -29,7 +29,7 @@ export default function CompanyProfile() {
             <div className="flex-1">
               <div className="flex flex-col md:flex-row md:items-center gap-4 justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold">GEICO</h1>
+                  <h1 className="text-3xl font-bold">Cigna</h1>
                   <div className="flex items-center gap-2 mt-2">
                     <div className="flex items-center">
                       <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
@@ -87,14 +87,14 @@ export default function CompanyProfile() {
                   <Building2 className="w-5 h-5 text-blue-500" />
                   <div>
                     <div className="font-medium">Founded</div>
-                    <div className="text-sm text-muted-foreground">1922, Bloomington, IL</div>
+                    <div className="text-sm text-muted-foreground">1982, Bloomfield, CT</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <DollarSign className="w-5 h-5 text-blue-500" />
                   <div>
                     <div className="font-medium">Revenue</div>
-                    <div className="text-sm text-muted-foreground">$89.3B (2023)</div>
+                    <div className="text-sm text-muted-foreground">$195.3 Billion (2023)</div>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">

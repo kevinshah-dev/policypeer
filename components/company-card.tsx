@@ -31,7 +31,7 @@ export default function CompanyCard({
 
               {isMostViewed && (
                 <Badge variant="secondary" className="text-xs">
-                  Most Viewed
+                  Popular
                 </Badge>
               )}
             </div>
