@@ -38,7 +38,7 @@ export default function Home() {
     ],
     health: [
       { name: "UnitedHealthcare", premium: "$250 - $524/mo", isPromoted: true, rating: 2.8 },
-      { name: "Anthem", premium: "$280 - $631/mo", rating: 2.1 },
+      { name: "Elevance Health", premium: "$280 - $631/mo", rating: 2.1 },
       { name: "Aetna", premium: "$258 - $469/mo", rating: 2.3 },
       { name: "Cigna", premium: "$271 - $515/mo", rating: 2.4 },
       { name: "Humana", premium: "$245 - $415/mo", rating: 3.1 },
@@ -92,10 +92,15 @@ export default function Home() {
               className="pl-10 h-12"
             />
           </div>
-          <div className="mt-4 flex justify-center">
+          <div className="mt-4 flex justify-center gap-4">
               <Link href="/addclaim">
                 <Button size="lg" className="bg-red-600 hover:bg-red-500 font-bold">
                   Add Your Policy
+                </Button>
+              </Link>
+              <Link href="/addclaim">
+                <Button size="lg" className="bg-red-600 hover:bg-red-500 font-bold">
+                  Add Your Claim
                 </Button>
               </Link>
           </div>

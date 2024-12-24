@@ -29,7 +29,7 @@ export default function CompanyProfile() {
             <div className="flex-1">
               <div className="flex flex-col md:flex-row md:items-center gap-4 justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold">GEICO</h1>
+                  <h1 className="text-3xl font-bold">Humana</h1>
                   <div className="flex items-center gap-2 mt-2">
                     <div className="flex items-center">
                       <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
