@@ -4,15 +4,12 @@ import * as React from "react";
 import Link from "next/link";
 import {
   NavigationMenu,
-  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button"; // Assuming you have a Button component
-import { cn } from "@/lib/utils";
 import MobileNav from "@/lib/mobile/mobilenav";
 
 // Define a type for your navigation links
