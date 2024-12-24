@@ -25,9 +25,6 @@ export default function AddPolicyType() {
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">What Type of Policy Are You Adding?</h1>
-          <p className="text-lg text-muted-foreground">
-            Select the category below to proceed with your policy details.
-          </p>
         </div>
 
         {/* Two-option grid for Car vs. Health */}
