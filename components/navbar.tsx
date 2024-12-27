@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button"; // Assuming you have a Button component
 import MobileNav from "@/lib/mobile/mobilenav";
+import { poppins } from "@/lib/fonts/fonts";
 
 // Define a type for your navigation links
 interface NavLink {
@@ -35,7 +36,11 @@ export function NavBar({
     <header className="border-b bg-white">
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href={logoHref} className="text-2xl font-bold text-red-600">
+        <Link href={logoHref} className={`
+            text-2xl font-bold text-red-600
+            ${poppins.className}  
+          `}
+        >
           {logoText}
         </Link>
 

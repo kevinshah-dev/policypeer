@@ -5,11 +5,14 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import CompanyCard from "@/components/company-card"
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem } from '@/components/ui/select'
 //import MobileNav from '@/lib/mobile/mobilenav'
 import { NavBar } from '@/components/navbar'
 import { navLinks } from '@/lib/navigation'
+import { Card, CardContent } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { montserrat } from '@/lib/fonts/fonts'
 
 type InsuranceProvider = {
   name: string
@@ -21,6 +24,18 @@ type InsuranceProvider = {
 type InsuranceProviders = {
   car: InsuranceProvider[];
   health: InsuranceProvider[];
+}
+
+type NavLink = {
+  slug: string;
+  name: string;
+  premium: string;
+  isMostViewed?: boolean;
+  rating: number;
+}
+
+function slugify(name: string) {
+  return name.toLowerCase().replace(/\s+/g, "-")
 }
 
 
@@ -48,6 +63,45 @@ export default function Home() {
     ]
   }
 
+  const allCompanies = [
+    ...insuranceProviders.car,
+    ...insuranceProviders.health,
+  ].map((company) => ({
+    ...company,
+    slug: slugify(company.name),
+  }));
+
+  const [searchTerm, setSearchTerm] = useState('');
+  const [filteredResults, setFilteredResults] = useState<NavLink[]>([]);
+
+  const searchRef = useRef<HTMLDivElement | null>(null);
+
+
+  useEffect(() => {
+    if (!searchTerm) {
+      setFilteredResults([]);
+      return;
+    }
+
+    const results = allCompanies.filter((company) => company.name.toLowerCase().includes(searchTerm.toLowerCase()));
+    setFilteredResults(results);
+  }, [searchTerm]);
+
+    useEffect(() => {
+      function handleClickOutside(e: MouseEvent) {
+        // If ref is set and the clicked element is not inside the search container
+        if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+          setFilteredResults([]); // Clear results
+        }
+      }
+  
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, []);
+  
+
   const [selectedInsurance, setSelectedInsurance] = useState<'car' | 'health'>('health');
 
   return (
@@ -57,20 +111,40 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4">Make Smarter Insurance Decisions With Real Data</h1>
+          <h1 className={`text-4xl font-bold mb-4 ${montserrat.className}`}>Make Smarter Insurance Decisions With Real Data</h1>
           <p className="text-lg text-muted-foreground mb-8">
             Compare actual insurance policies and prices from users nationwide
           </p>
-          <div className="max-w-2xl mx-auto relative">
+          <div ref={searchRef} className="max-w-2xl mx-auto relative">
             <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
             <Input
               placeholder="Search by Company"
               className="pl-10 h-12"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
+            {filteredResults.length > 0 && (
+              <Card className="absolute top-14 left-0 w-full z-10 mt-1">
+                <CardContent className="p-0">
+                  {filteredResults.map((company) => (
+                    <Link
+                      key={company.slug}
+                      href={`/companies/${company.slug}`}
+                      className="block px-4 py-2 hover:bg-gray-100 transition-colors"
+                    >
+                      <div className="flex justify-between items-center">
+                        <span>{company.name}</span>
+                        <Badge variant="outline">{company.premium}</Badge>
+                      </div>
+                    </Link>
+                  ))}
+                </CardContent>
+              </Card>
+            )}
           </div>
           <div className="mt-4 flex justify-center gap-4">
               <Link href="/addpolicytype">
-                <Button size="lg" className="bg-red-600 hover:bg-red-500 font-bold">
+                <Button size="lg" className={"bg-red-600 hover:bg-red-500 font-bold " + montserrat.className}>
                   Add Your Policy
                 </Button>
               </Link>
@@ -159,3 +233,4 @@ export default function Home() {
     </div>
   )
 }
+
