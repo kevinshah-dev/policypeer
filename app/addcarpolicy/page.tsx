@@ -20,6 +20,7 @@ import { useState } from "react"
 import { supabase } from "@/lib/supabase"
 import { useRouter } from "next/navigation"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { CompanySelect } from "@/components/companyselect"
 
 export default function AddCarPolicy() {
 
@@ -125,15 +126,15 @@ export default function AddCarPolicy() {
 
           <div className="space-y-6">
             <div>
-              <h2 className="text-xl font-semibold mb-4">Insurance Provider & Plan Information</h2>
+              <h2 className="text-xl font-semibold mb-4">Insurance Company & Premium</h2>
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="company">Insurance Company</Label>
-                  <Input 
-                    id="company" 
-                    placeholder="e.g. State Farm, GEICO" 
-                    onChange={handleCompanyChange}
-                  />
+                    <Label htmlFor="company">Insurance Company</Label>
+                    <CompanySelect
+                        value={formData.company}
+                        onChange={(newValue) => setFormData((prev) => ({ ...prev, company: newValue }))}
+                    >
+                    </CompanySelect>
                 </div>
                 <div>
                   <Label htmlFor="premium">Monthly Premium</Label>

@@ -1,22 +1,31 @@
 import { Card } from "@/components/ui/card"
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table"
 import { Progress } from "@/components/ui/progress"
-import { Star } from 'lucide-react'
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { Star } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function CompanyOverview() {
   return (
     <div className="space-y-6">
+      {/* ABOUT SECTION */}
       <Card className="p-6">
-        <h2 className="text-xl font-semibold mb-4">About State Farm</h2>
+        <h2 className="text-xl font-bold mb-4">About Cigna</h2>
         <p className="text-muted-foreground">
-          State Farm is a large group of insurance and financial services companies. Through its agents and employees, 
-          State Farm provides insurance and financial services products including auto, home, life insurance, banking products, 
-          and investment planning. The company's mission is to help people manage the risks of everyday life, recover from 
-          the unexpected, and realize their dreams.
+          Cigna Health Insurance is one of America’s largest health benefits companies, 
+          offering comprehensive healthcare solutions through its network of affiliated organizations.
+          The company serves over 180 million customer relationships through its health plans, 
+          delivering healthcare services both in the United States and internationally across more than 30 countries.
         </p>
       </Card>
 
+      {/* 2-COLUMN GRID: CLAIMS TABLE (LEFT) & RATINGS (RIGHT) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         {/* CLAIMS TABLE CARD */}
@@ -112,6 +121,7 @@ export function CompanyOverview() {
         </Card>
       </div>
 
+      {/* AVAILABLE PRODUCTS SECTION */}
       <Card className="p-6">
         <h2 className="text-xl font-semibold mb-4">Available Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

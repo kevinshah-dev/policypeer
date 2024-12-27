@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Car, HeartPulse } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { montserrat } from "@/lib/fonts/fonts"
 
 export default function AddPolicyType() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function AddPolicyType() {
     <div className="min-h-screen bg-gray-50">
       <header className="border-b bg-white">
         <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-          <Link href="/" className="text-xl font-bold text-red-600">
+          <Link href="/" className={"text-xl font-bold text-red-600 " + montserrat.className}>
             PolicyPeer
           </Link>
         </div>

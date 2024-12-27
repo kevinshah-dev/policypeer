@@ -43,10 +43,10 @@ export function CompanyOverview() {
         <h2 className="text-xl font-semibold mb-4">Available Products</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {[
-            "Auto Insurance",
-            "Home Insurance",
-            "Life Insurance",
-            "Property Insurance",
+            "Bronze, Silver, Gold, and Platinum Plan Tiers",
+            "Medicare",
+            "HMO (Health Maintenance Organization)",
+            "PPO (Preferred Provider Organization)",
             "Business Insurance",
             "Health Insurance",
             "Disability Insurance",

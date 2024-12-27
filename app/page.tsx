@@ -111,7 +111,7 @@ export default function Home() {
 
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
-          <h1 className={`text-4xl font-bold mb-4 ${montserrat.className}`}>Make Smarter Insurance Decisions With Real Data</h1>
+          <h1 className={`text-4xl font-bold mb-4 ${montserrat.className}`}>Protect Yourself From Insurance Companies</h1>
           <p className="text-lg text-muted-foreground mb-8">
             Compare actual insurance policies and prices from users nationwide
           </p>
@@ -124,17 +124,18 @@ export default function Home() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             {filteredResults.length > 0 && (
-              <Card className="absolute top-14 left-0 w-full z-10 mt-1">
+              <Card className="absolute top-10 left-0 w-full z-10 mt-1 shadow-xl rounded-lg border bg-white"
+              >
                 <CardContent className="p-0">
                   {filteredResults.map((company) => (
                     <Link
                       key={company.slug}
                       href={`/companies/${company.slug}`}
-                      className="block px-4 py-2 hover:bg-gray-100 transition-colors"
+                      className="block px-4 py-3 rounded-md hover:bg-gray-100 transition-colors text-base"
                     >
                       <div className="flex justify-between items-center">
-                        <span>{company.name}</span>
-                        <Badge variant="outline">{company.premium}</Badge>
+                        <span className="font-medium">{company.name}</span>
+                        <Badge variant="outline" className="text-sm py-1 px-2">{company.premium}</Badge>
                       </div>
                     </Link>
                   ))}
@@ -149,7 +150,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/addclaim">
-                <Button size="lg" className="bg-red-600 hover:bg-red-500 font-bold">
+                <Button size="lg" className={"bg-red-600 hover:bg-red-500 font-bold " + montserrat.className}>
                   Add Your Claim
                 </Button>
               </Link>
@@ -193,17 +194,17 @@ export default function Home() {
     <div>
     <Zap className="mx-auto mb-2" />
       <h3 className="font-semibold">Compare</h3>
-      <p className="text-sm text-muted-foreground">Find real rates from across the country.</p>
+      <p className="text-sm text-muted-foreground">Find real policy data to see how insurers stack up.</p>
     </div>
     <div>
     <Star className="mx-auto mb-2" />
-      <h3 className="font-semibold">Rate</h3>
-      <p className="text-sm text-muted-foreground">Share your experience & rate your provider.</p>
+      <h3 className="font-semibold">Reveal</h3>
+      <p className="text-sm text-muted-foreground">Uncover unfair practices through crowdsourced data.</p>
     </div>
     <div>
     <Share2 className="mx-auto mb-2" />
       <h3 className="font-semibold">Share Claims</h3>
-      <p className="text-sm text-muted-foreground">Help others learn from real claim stories.</p>
+      <p className="text-sm text-muted-foreground">Join us in exposing fraud through sharing your experience.</p>
     </div>
     <div>
     <CircleDollarSign className="mx-auto mb-2" />

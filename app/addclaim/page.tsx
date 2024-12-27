@@ -20,12 +20,14 @@ import {
   SelectItem,
 } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-
 import { Upload } from "lucide-react"
+import { CompanySelect } from "@/components/companyselect"
+import { Checkbox } from "@/components/ui/checkbox"
 
 export default function AddInsuranceClaim() {
   const router = useRouter()
   const [showModal, setShowModal] = useState(false)
+  const [isCertified, setIsCertified] = useState(false)
 
   // State for claim data
   const [formData, setFormData] = useState({
@@ -36,6 +38,7 @@ export default function AddInsuranceClaim() {
     claimStatus: "new",
     coverageType: "", // e.g. "Collision" if it's a car claim
     note: "",
+    company: "",
   })
 
   // Generic input change handlers
@@ -57,8 +60,12 @@ export default function AddInsuranceClaim() {
     }))
   }
 
-  // Submit the claim data to "claims" table (example name)
   const handleSubmit = async () => {
+    if (!isCertified) {
+      alert("Please certify that the information is accurate.")
+      return
+    }
+
     try {
       const { error } = await supabase.from("claims").insert(formData)
       if (error) throw error
@@ -101,7 +108,6 @@ export default function AddInsuranceClaim() {
         <Card>
           <CardContent className="pt-6">
             <div className="space-y-6">
-              {/* INSURANCE TYPE */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">Insurance Type</h2>
                 <RadioGroup
@@ -119,8 +125,14 @@ export default function AddInsuranceClaim() {
                   </div>
                 </RadioGroup>
               </div>
-
-              {/* CLAIM DETAILS */}
+              <div>
+                <h2 className="text-xl font-semibold mb-4">Company</h2>
+                <CompanySelect
+                  value={formData.company}
+                  onChange={(newValue) => setFormData((prev) => ({ ...prev, company: newValue }))}
+                >
+                </CompanySelect>
+              </div>
               <div>
                 <h2 className="text-xl font-semibold mb-4">Claim Details</h2>
                 <div className="grid gap-4">
@@ -154,7 +166,6 @@ export default function AddInsuranceClaim() {
                 </div>
               </div>
 
-              {/* IF It's Car Insurance, coverage type might matter */}
               {formData.insuranceType === "car" && (
                 <div>
                   <h2 className="text-xl font-semibold mb-4">Coverage Type</h2>
@@ -174,7 +185,6 @@ export default function AddInsuranceClaim() {
                 </div>
               )}
 
-              {/* Additional Note */}
               <div>
                 <Label htmlFor="note">Additional Notes (optional)</Label>
                 <Textarea
@@ -208,8 +218,18 @@ export default function AddInsuranceClaim() {
                 </RadioGroup>
               </div>
             </div>
+            <div className="mt-8 flex items-center space-x-2">
+              <Checkbox
+                id="certify"
+                checked={isCertified}
+                onCheckedChange={(checked) => setIsCertified(!!checked)}
+              />
+              <Label htmlFor="certify">
+                I certify that the information provided is accurate and true.
+              </Label>
+            </div>
 
-            <Button className="w-full mt-8" onClick={handleSubmit}>
+            <Button className="w-full mt-8 bg-red-600 hover:bg-red-500" onClick={handleSubmit} disabled={!isCertified}>
               Submit Claim
             </Button>
           </CardContent>
