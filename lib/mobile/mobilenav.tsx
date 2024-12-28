@@ -1,27 +1,44 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
+import { Button } from "@/components/ui/button"
 
-export default function MobileNav() {
+interface MobileNavProps {
+  setMobileMenuOpen: (open: boolean) => void
+}
+
+export default function MobileNav({ setMobileMenuOpen }: MobileNavProps) {
     const [isOpen, setIsOpen] = useState(false)
+
+    useEffect(() => {
+      setIsOpen(true)
+    }, [])
+
+    const handleClose = () => {
+      setIsOpen(false)
+      setMobileMenuOpen(false)
+    }
   
     return (
-      <div className="block md:hidden">
-        <button
-          className="text-red-600 p-2"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
-          aria-expanded={isOpen}
-        >
-          Menu
-        </button>
-        {isOpen && (
-          <div className="absolute top-16 left-0 w-full bg-white shadow-lg p-4 z-50">
-            <Link href="/companies" className="block mb-2">Companies</Link>
-            <Link href="/quotes" className="block mb-2">Quotes</Link>
-            <Link href="/privacy" className="block mb-2">Privacy Policy</Link>
-            <Link href="/support" className="block mb-2">Support</Link>
+      <div className="fixed inset-0 bg-white z-50 md:hidden">
+        <div className="absolute inset-0 bg-black/10" onClick={handleClose}/>
+        <div className="relative bg-white p-4 w-80 max-w-full h-full">
+          <div className="mb-4">
+            <Link href="/" className="text-xl font-bold text-red-600">
+              PolicyPeer
+            </Link>
           </div>
-        )}
+            <div className="flex flex-col gap-2">
+              <Link href="/companies" className="block" onClick={handleClose}>Companies</Link>
+              <Link href="/quotes" className="block" onClick={handleClose}>Quotes</Link>
+              <Link href="/privacy" className="block" onClick={handleClose}>Privacy Policy</Link>
+              <Link href="/support" className="block" onClick={handleClose}>Support</Link>
+          </div>
+          <div className="mt-6 space-y-2">
+            <Link href="/signup">
+              <Button className="w-full" onClick={handleClose}>Sign In</Button>
+            </Link>
+          </div>
+      </div>
       </div>
     )
   }

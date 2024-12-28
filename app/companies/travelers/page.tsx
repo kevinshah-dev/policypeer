@@ -19,36 +19,38 @@ export default function CompanyProfile() {
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
       <div className="bg-white border-b">
-        <div className="container mx-auto px-4 py-8">
-          <div className="flex flex-col md:flex-row items-start gap-6">
-            <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
-              <Image
-                src="/elevancehealth.jpg"
-                alt="Elevance Health Logo"
-                width={80}
-                height={80}
-                className="object-contain"
-              />
-            </div>
-            <div className="flex-1">
-              <div className="flex flex-col md:flex-row md:items-center gap-4 justify-between">
-                <div>
-                  <h1 className="text-3xl font-bold">Elevance Health</h1>
-                  <div className="flex items-center gap-2 mt-2">
-                    <div className="flex items-center">
-                      <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                      <span className="ml-1 font-semibold">4.2</span>
-                    </div>
-                    <span className="text-muted-foreground">(2,456 Reviews)</span>
-                  </div>
+          <div className="container mx-auto px-4 py-8">
+              <div className="flex flex-col md:flex-row items-start gap-6">
+                <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
+                  <Image
+                    src="/elevancehealth.jpg"
+                    alt="Elevance Health Logo"
+                    width={80}
+                    height={80}
+                    className="object-contain"
+                  />
+                 </div>
+                 <div className="flex flex-col items-start md:items-start gap-3 flex-1">
+                    <div className="flex flex-col items-start w-full">
+                        <div className="md:mb-1">
+                           <h1 className="text-2xl md:text-3xl font-bold md:text-left">Travelers</h1>
+                        </div>
+                       <div className="flex items-center justify-start  md:justify-start md:items-start md:flex-col">
+                           <div className="flex items-center gap-2">
+                                <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                               <span className="ml-1 font-semibold">4.2</span>
+                               <span className="text-muted-foreground ml-1 text-xs md:text-base">(2,456 Reviews)</span>
+                           </div>
+                        </div>
+                     </div>
+                     <Button className="mt-2 md:mt-0 self-start w-full md:w-auto">
+                     Add Your Experience
+                     </Button>
                 </div>
-                <Button>Add Your Experience</Button>
-              </div>
-            </div>
-          </div>
+             </div>
+           </div>
         </div>
-      </div>
-
+        
       <div className="container mx-auto px-4 py-6 flex-grow">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2">
@@ -146,10 +148,10 @@ export default function CompanyProfile() {
       </div>
       <div className="border-t pt-2 text-xs text-gray-500 mt-4 md:mt-0 md:border-none md:pt-0" id="footnote-1">
         <p>
-          [1]{" "} 
-          <a 
-            href="https://www.elevancehealth.com/who-we-are/companies" 
-            target="_blank" 
+          [1]{" "}
+          <a
+            href="https://www.elevancehealth.com/who-we-are/companies"
+            target="_blank"
             rel="noopener noreferrer"
             className="underline hover:text-blue-600"
           >
@@ -157,7 +159,6 @@ export default function CompanyProfile() {
           </a>
         </p>
       </div>
-
     </div>
   )
 }

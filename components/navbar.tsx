@@ -12,6 +12,8 @@ import {
 import { Button } from "@/components/ui/button"; // Assuming you have a Button component
 import MobileNav from "@/lib/mobile/mobilenav";
 import { poppins } from "@/lib/fonts/fonts";
+import { useState } from "react";
+import { Menu } from "lucide-react";
 
 // Define a type for your navigation links
 interface NavLink {
@@ -32,6 +34,9 @@ export function NavBar({
   navLinks,
   signInHref,
 }: NavBarProps) {
+
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <header className="border-b bg-white">
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
@@ -60,14 +65,22 @@ export function NavBar({
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
-        <div className="flex items-center gap-4">
-          <MobileNav /> {/* Mobile Nav component, assuming it exists */}
+        <div className="flex items-center gap-4 md:hidden">
+            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-gray-600 focus:outline-none focus:ring-2 focus:ring-red-400 rounded">
+                <Menu className="h-6 w-6" />
+            </button>
+        { mobileMenuOpen && <MobileNav setMobileMenuOpen={setMobileMenuOpen}/> }
           <Link href="/signup">
             <Button>Sign Up</Button>
           </Link>
-          <Link href={signInHref}>
-            <Button>Sign In</Button>
-          </Link>
+          </div>
+          <div className="hidden items-center gap-4 md:flex">
+            <Link href={signInHref}>
+                <Button>Sign Up</Button>
+            </Link>
+            <Link href={signInHref}>
+                <Button>Sign In</Button>
+            </Link>
         </div>
       </div>
     </header>
