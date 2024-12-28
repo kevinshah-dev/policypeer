@@ -3,6 +3,7 @@ import { Progress } from "@/components/ui/progress"
 import { Star } from 'lucide-react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
+import Link from 'next/link'
 
 export function CompanyOverview() {
   const affiliatedCompanies = [
@@ -49,9 +50,11 @@ export function CompanyOverview() {
         <Card className="p-4 md:p-6">
           <div className="flex items-center justify-between mb-3 md:mb-4">
             <h2 className="text-xl font-semibold">Claims History</h2>
-            <Button variant="outline" className="text-xs md:text-sm">
-              Submit a Claim
-            </Button>
+            <Link href="/addclaim">
+              <Button variant="outline" className="text-xs md:text-sm">
+                Submit a Claim
+              </Button>
+            </Link>
           </div>
           
           {/* Single statistic: Claims Approval Rate */}

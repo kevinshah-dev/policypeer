@@ -23,8 +23,8 @@ export default function CompanyProfile() {
               <div className="flex flex-col md:flex-row items-start gap-6">
                 <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
                   <Image
-                    src="/elevancehealth.jpg"
-                    alt="Elevance Health Logo"
+                    src="/Travelers.jpg"
+                    alt="Travelers Logo"
                     width={80}
                     height={80}
                     className="object-contain"
