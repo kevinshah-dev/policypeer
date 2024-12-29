@@ -14,13 +14,13 @@ import { NavBar } from "@/components/navbar"
 import { navLinks } from "@/lib/navigation"
 
 export default function CompanyProfile() {
-
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
       <div className="bg-white border-b">
           <div className="container mx-auto px-4 py-8">
               <div className="flex flex-col md:flex-row items-start gap-6">
+              <div className="flex flex-row items-center justify-between md:block w-full md:w-24">
                 <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
                   <Image
                     src="/Travelers.jpg"
@@ -30,6 +30,12 @@ export default function CompanyProfile() {
                     className="object-contain"
                   />
                  </div>
+                  <div className="block md:hidden">
+                    <Button className="bg-red-600 hover:bg-red-500">
+                      Add Your Experience
+                    </Button>
+                  </div>
+                </div>
                  <div className="flex flex-col items-start md:items-start gap-3 flex-1">
                     <div className="flex flex-col items-start w-full">
                         <div className="md:mb-1">
@@ -43,9 +49,11 @@ export default function CompanyProfile() {
                            </div>
                         </div>
                      </div>
-                     <Button className="mt-2 md:mt-0 self-start w-full md:w-auto">
-                     Add Your Experience
-                     </Button>
+                     <div className="hidden md:block">
+                      <Button className="mt-2 md:mt-0 self-start w-full md:w-auto">
+                        Add Your Experience
+                      </Button>
+                     </div>
                 </div>
              </div>
            </div>
@@ -54,12 +62,12 @@ export default function CompanyProfile() {
       <div className="container mx-auto px-4 py-6 flex-grow">
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2">
-            <Tabs defaultValue="overview" className="w-full">
-              <TabsList className="w-full justify-start h-auto flex-wrap">
+            <Tabs defaultValue="overview">
+              <TabsList className="justify-start h-auto flex-wrap">
                 <TabsTrigger value="overview" className="text-sm">Overview</TabsTrigger>
                 <TabsTrigger value="reviews" className="text-sm">Reviews</TabsTrigger>
                 <TabsTrigger value="claims" className="text-sm">Claim History</TabsTrigger>
-                <TabsTrigger value="policies" className="text-sm">Policy Information</TabsTrigger>
+                <TabsTrigger value="policies" className="text-sm">Policies</TabsTrigger>
               </TabsList>
               <div className="mt-6">
                 <TabsContent value="overview">
@@ -79,7 +87,7 @@ export default function CompanyProfile() {
           </div>
 
           <div className="space-y-6">
-            <Card className="p-6">
+            <Card className="p-4 md:p-6">
               <h3 className="font-semibold mb-4">Company Highlights</h3>
               <div className="space-y-4">
                 <div className="flex items-center gap-3">

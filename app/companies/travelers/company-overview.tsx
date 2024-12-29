@@ -6,13 +6,6 @@ import { Button } from "@/components/ui/button"
 import Link from 'next/link'
 
 export function CompanyOverview() {
-  const affiliatedCompanies = [
-    "Anthem Blue Cross and Blue Shield",
-    "Wellpoint",
-    "HealthSun, Freedom Health, and Optimum Healthcare (Florida)",
-    "MMM Healthcare (Puerto Rico)"
-  ]
-
   return (
     <div className="space-y-6 p-4 md:p-0 flex-grow">
       <Card className="p-4 md:p-6">
@@ -21,27 +14,6 @@ export function CompanyOverview() {
         Elevance Health (formerly Anthem) is one of America's largest health benefits companies, providing comprehensive healthcare solutions through its family of affiliated companies. 
         The organization serves over 46.8 million members through its health plans, delivering healthcare services across 23 states and Puerto Rico.
         </p>
-
-        <div className="mt-3 md:mt-4">
-          <h3 className="text-lg mb-2">Affiliated Companies:</h3>
-          <ul className="list-disc list-inside space-y-1">
-            {affiliatedCompanies.map((company) => (
-              <li key={company} className="text-sm text-muted-foreground">
-                {company}
-                {company === "Anthem Blue Cross and Blue Shield" && (
-                  <sup className="ml-1 text-xs text-gray-400 cursor-pointer">
-                    <a 
-                      href="#footnote-1" 
-                      className="cursor-pointer text-inherit no-underline hover:underline"
-                    >
-                      [1]
-                    </a>
-                  </sup>
-                )}
-              </li>
-            ))}
-          </ul>
-        </div>
       </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
