@@ -13,6 +13,7 @@ import { navLinks } from '@/lib/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { montserrat } from '@/lib/fonts/fonts'
+import Footer from '@/components/footer'
 
 type InsuranceProvider = {
   name: string
@@ -231,6 +232,7 @@ export default function Home() {
           </details>
         </div>
       </section>
+      <Footer/>
     </div>
   )
 }

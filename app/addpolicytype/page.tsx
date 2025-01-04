@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button"
 import { Car, HeartPulse } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { montserrat } from "@/lib/fonts/fonts"
+import { NavBar } from "@/components/navbar"
+import { navLinks } from "@/lib/navigation"
 
 export default function AddPolicyType() {
   const router = useRouter();
@@ -12,13 +14,7 @@ export default function AddPolicyType() {
   
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="border-b bg-white">
-        <div className="container mx-auto px-4 flex h-16 items-center justify-between">
-          <Link href="/" className={"text-xl font-bold text-red-600 " + montserrat.className}>
-            PolicyPeer
-          </Link>
-        </div>
-      </header>
+      <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
 
       <main className="container mx-auto px-4 py-12">
         <div className="text-center mb-8">

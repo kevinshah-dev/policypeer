@@ -75,7 +75,7 @@ export function NavBar({
           </Link>
           </div>
           <div className="hidden items-center gap-4 md:flex">
-            <Link href={signInHref}>
+            <Link href="/signup">
                 <Button>Sign Up</Button>
             </Link>
             <Link href={signInHref}>
