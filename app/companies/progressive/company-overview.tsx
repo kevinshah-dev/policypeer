@@ -4,8 +4,15 @@ import { Star } from 'lucide-react'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { Button } from "@/components/ui/button"
 import Link from 'next/link'
+import { Claim } from "@/types/claim"
 
-export function CompanyOverview() {
+
+type Props = {
+  claims: Claim[]
+}
+
+
+export function CompanyOverview({ claims }: Props) {
   return (
     <div className="space-y-6 p-4 md:p-0 flex-grow">
       <Card className="p-4 md:p-6">
@@ -47,38 +54,19 @@ export function CompanyOverview() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {[
-                {
-                  type: "Auto Collision",
-                  date: "Dec 12, 2023",
-                  amount: "$12,500",
-                  status: "Approved",
-                },
-                {
-                  type: "Property Damage",
-                  date: "Nov 28, 2023",
-                  amount: "$8,750",
-                  status: "Denied",
-                },
-                {
-                  type: "Medical Expenses",
-                  date: "Nov 15, 2023",
-                  amount: "$3,200",
-                  status: "Pending",
-                },
-              ].map((claim) => (
-                <TableRow key={claim.date}>
-                  <TableCell className="text-sm">{claim.type}</TableCell>
-                  <TableCell className="text-sm">{claim.date}</TableCell>
-                  <TableCell className="text-sm">{claim.amount}</TableCell>
+              {claims.map((claim) => (
+                <TableRow key={claim.claimDate}>
+                  <TableCell className="text-sm">{claim.claimDescription}</TableCell>
+                  <TableCell className="text-sm">{claim.claimDate}</TableCell>
+                  <TableCell className="text-sm">{claim.claimAmount}</TableCell>
                   <TableCell>
                     <span
                       className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                        claim.status === "Approved"
+                        claim.status === "approved"
                           ? "bg-green-100 text-green-800"
-                          : claim.status === "Pending"
+                          : claim.status === "in-progress"
                           ? "bg-yellow-100 text-yellow-800"
-                          : claim.status === "Denied"
+                          : claim.status === "denied"
                           ? "bg-red-100 text-red-800"
                           : ""
                       }`}

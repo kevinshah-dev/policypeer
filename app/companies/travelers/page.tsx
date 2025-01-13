@@ -1,4 +1,3 @@
-'use client'
 
 import Image from "next/image"
 import Link from "next/link"
@@ -12,8 +11,16 @@ import { ClaimHistory } from "./claim-history"
 import { PolicyInformation } from "./policy-information"
 import { NavBar } from "@/components/navbar"
 import { navLinks } from "@/lib/navigation"
+import { supabase } from "@/lib/supabase"
 
-export default function CompanyProfile() {
+export default async function CompanyProfile() {
+
+  const { data, error } = await supabase
+    .from("claims")
+    .select("*")
+    .eq("company", "progressive")
+
+  console.log("Claims Data:", data)
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
@@ -71,7 +78,7 @@ export default function CompanyProfile() {
               </TabsList>
               <div className="mt-6">
                 <TabsContent value="overview">
-                  <CompanyOverview />
+                  <CompanyOverview claims={data ?? []}/>
                 </TabsContent>
                 <TabsContent value="reviews">
                   <CompanyReviews />
