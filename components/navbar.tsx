@@ -12,8 +12,9 @@ import {
 import { Button } from "@/components/ui/button"; // Assuming you have a Button component
 import MobileNav from "@/lib/mobile/mobilenav";
 import { poppins } from "@/lib/fonts/fonts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 // Define a type for your navigation links
 interface NavLink {
@@ -37,6 +38,27 @@ export function NavBar({
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const [session, setSession] = useState<any>(null);
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({data, error}) => {
+      if (!error) {
+        setSession(data.session);
+      }
+    });
+
+    const {
+      data: authListener
+    } = supabase.auth.onAuthStateChange((event, newSession) => {
+      setSession(newSession);
+    })
+
+    return () => {
+      authListener?.subscription.unsubscribe();
+    }
+  }, []);
+
+  console.log("session", session);
   return (
     <header className="border-b bg-white">
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
@@ -70,17 +92,31 @@ export function NavBar({
                 <Menu className="h-6 w-6" />
             </button>
         { mobileMenuOpen && <MobileNav setMobileMenuOpen={setMobileMenuOpen}/> }
-          <Link href="/signup">
-            <Button>Sign Up</Button>
-          </Link>
+        {!session ? (
+            <Link href="/signup">
+              <Button>Sign Up</Button>
+            </Link>
+          ) : (
+            <Link href="/account">
+              <Button>My Account</Button>
+            </Link>
+          )}
           </div>
           <div className="hidden items-center gap-4 md:flex">
-            <Link href="/signup">
+          {!session ? (
+            <>
+              <Link href="/signup">
                 <Button>Sign Up</Button>
-            </Link>
-            <Link href={signInHref}>
+              </Link>
+              <Link href={signInHref}>
                 <Button>Sign In</Button>
+              </Link>
+            </>
+          ) : (
+            <Link href="/account">
+              <Button>My Account</Button>
             </Link>
+          )}
         </div>
       </div>
     </header>
