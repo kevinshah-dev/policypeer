@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
@@ -29,6 +29,8 @@ export default function AddInsuranceClaim() {
   const [showModal, setShowModal] = useState(false)
   const [isCertified, setIsCertified] = useState(false)
 
+  const [session, setSession] = useState<any>(null)
+
   // State for claim data
   const [formData, setFormData] = useState({
     insuranceType: "car", // or "health"
@@ -39,7 +41,14 @@ export default function AddInsuranceClaim() {
     coverageType: "", // e.g. "Collision" if it's a car claim
     note: "",
     company: "",
+    user_id: "",
   })
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data}) => {
+      setSession(data?.session)
+    })
+  }, [])
 
   // Generic input change handlers
   const handleInputChange = (
@@ -67,7 +76,13 @@ export default function AddInsuranceClaim() {
     }
 
     try {
-      const { error } = await supabase.from("claims").insert(formData)
+
+      const dataForInsert = {...formData }
+      if (session) {
+        dataForInsert.user_id = session.user.id;
+      }
+
+      const { error } = await supabase.from("claims").insert(dataForInsert)
       if (error) throw error
 
       setShowModal(true)
