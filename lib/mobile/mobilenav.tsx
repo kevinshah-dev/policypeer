@@ -37,7 +37,6 @@ export default function MobileNav({ setMobileMenuOpen }: MobileNavProps) {
           
           <div className="flex flex-col gap-2">
             <Link href="/companies" className="block" onClick={handleClose}>Companies</Link>
-            <Link href="/quotes" className="block" onClick={handleClose}>Quotes</Link>
             <Link href="/privacy" className="block" onClick={handleClose}>Privacy</Link>
             <Link href="/support" className="block" onClick={handleClose}>Support</Link>
             <Link href="/dictionary" className="block" onClick={handleClose}>Dictionary</Link>
