@@ -15,14 +15,6 @@ type Props = {
 export function CompanyOverview({ claims }: Props) {
   return (
     <div className="space-y-6 p-4 md:p-0 flex-grow">
-      <Card className="p-4 md:p-6">
-        <h2 className="text-xl font-bold mb-3 md:mb-4">About Elevance Health</h2>
-        <p className="text-sm md:text-muted-foreground">
-        Elevance Health (formerly Anthem) is one of America's largest health benefits companies, providing comprehensive healthcare solutions through its family of affiliated companies. 
-        The organization serves over 46.8 million members through its health plans, delivering healthcare services across 23 states and Puerto Rico.
-        </p>
-      </Card>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         
         {/* CLAIMS TABLE CARD */}
@@ -106,6 +98,14 @@ export function CompanyOverview({ claims }: Props) {
           </div>
         </Card>
       </div>
+
+      <Card className="p-4 md:p-6">
+        <h2 className="text-xl font-bold mb-3 md:mb-4">About Elevance Health</h2>
+        <p className="text-sm md:text-muted-foreground">
+        Elevance Health (formerly Anthem) is one of America's largest health benefits companies, providing comprehensive healthcare solutions through its family of affiliated companies. 
+        The organization serves over 46.8 million members through its health plans, delivering healthcare services across 23 states and Puerto Rico.
+        </p>
+      </Card>
 
       <Card className="p-4 md:p-6">
         <h2 className="text-xl font-semibold mb-3 md:mb-4">Available Products</h2>
