@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation"
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { CompanySelect } from "@/components/companyselect"
 
-export default function AddCarPolicy() {
+export default function AddHealthPolicy() {
 
   const router = useRouter()
   const [showModal, setShowModal] = useState(false)
@@ -151,22 +151,6 @@ export default function AddCarPolicy() {
             <div>
               <h2 className="text-xl font-semibold mb-4">Coverage Details</h2>
               <div className="grid gap-4">
-                <div>
-                  <Label htmlFor="coverage-type">Coverage Type</Label>
-                  <Select
-                    onValueChange={handleCoverageTypeChange}
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select coverage type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="comprehensive">Comprehensive</SelectItem>
-                      <SelectItem value="collision">Collision</SelectItem>
-                      <SelectItem value="liability">Liability</SelectItem>
-                      <SelectItem value="full">Full Coverage</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
                 <div>
                   <Label htmlFor="deductible">Deductible Amount</Label>
                   <Input 

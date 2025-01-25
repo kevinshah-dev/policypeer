@@ -33,15 +33,16 @@ export default function AddInsuranceClaim() {
 
   // State for claim data
   const [formData, setFormData] = useState({
-    insuranceType: "car", // or "health"
+    insuranceType: "car",
     claimDate: "",
     claimAmount: "",
     claimDescription: "",
     claimStatus: "new",
-    coverageType: "", // e.g. "Collision" if it's a car claim
+    coverageType: "",
     note: "",
     company: "",
     user_id: "",
+    claim_category: "",
   })
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function AddInsuranceClaim() {
     }))
   }
 
-  // Special handler for "Select" or "RadioGroup" changes
+  
   const handleSelectChange = (fieldName: string, value: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -232,7 +233,47 @@ export default function AddInsuranceClaim() {
                   </div>
                 </RadioGroup>
               </div>
+
+            {/* CLAIM CATEGORY */}
+
+            <div>
+              <h2 className="text-xl font-semibold mb-4">Claim Category</h2>
+              {formData.insuranceType === "car" ? (
+                <Select 
+                  onValueChange={(val) => handleSelectChange("claim_category", val)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Car Claim Cateogry" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Accident">Accident</SelectItem>
+                    <SelectItem value="Theft">Theft</SelectItem>
+                    <SelectItem value="Collision with Animal">Collision with Animal</SelectItem>
+                    <SelectItem value="Vandalism">Vandalism</SelectItem>
+                    <SelectItem value="Flood Damage">Flood Damage</SelectItem>
+                    <SelectItem value="Windshield / Glass Damage">Windshield / Glass Damage</SelectItem>
+                  </SelectContent>
+                </Select>
+              ) : (
+                <Select
+                  onValueChange={(val) => handleSelectChange("claim_category", val)}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select Health Claim Category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="hospitalization">Hospitalization</SelectItem>
+                    <SelectItem value="surgery">Emergency Care</SelectItem>
+                    <SelectItem value="prescription">Diagnostic Test</SelectItem>
+                    <SelectItem value="emergency-room">Medication Reimbursement</SelectItem>
+                    <SelectItem value="physical-therapy">Dental Care</SelectItem>
+                    <SelectItem value="mental-health">Mental Health</SelectItem>
+                  </SelectContent>
+                </Select>
+              )}
+              </div>
             </div>
+
             <div className="mt-8 flex items-center space-x-2">
               <Checkbox
                 id="certify"
