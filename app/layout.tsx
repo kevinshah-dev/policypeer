@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { SpeedInsights } from '@vercel/speed-insights/next'
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -16,10 +17,11 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "PolicyPeer",
-  description: "PolicyPeer is a platform for insurance policy, price, and claim data",
+  description:
+    "PolicyPeer is a platform for insurance policy, price, and claim data",
   icons: {
     icon: "/favicon.ico",
-  }
+  },
 };
 
 export default function RootLayout({
@@ -34,6 +36,7 @@ export default function RootLayout({
       >
         {children}
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
