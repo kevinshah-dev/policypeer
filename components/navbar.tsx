@@ -35,35 +35,36 @@ export function NavBar({
   navLinks,
   signInHref,
 }: NavBarProps) {
-
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [session, setSession] = useState<any>(null);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({data, error}) => {
+    supabase.auth.getSession().then(({ data, error }) => {
       if (!error) {
         setSession(data.session);
       }
     });
 
-    const {
-      data: authListener
-    } = supabase.auth.onAuthStateChange((event, newSession) => {
-      setSession(newSession);
-    })
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, newSession) => {
+        setSession(newSession);
+      }
+    );
 
     return () => {
       authListener?.subscription.unsubscribe();
-    }
+    };
   }, []);
 
-  console.log("session", session);
+  //console.log("session", session);
   return (
     <header className="border-b bg-white">
       <div className="container mx-auto px-4 flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href={logoHref} className={`
+        <Link
+          href={logoHref}
+          className={`
             text-2xl font-bold text-red-600
             ${poppins.className}  
           `}
@@ -75,24 +76,31 @@ export function NavBar({
         <nav className="hidden md:flex items-center gap-6">
           <NavigationMenu>
             <NavigationMenuList>
-                {navLinks.map((link) => (
-                    <NavigationMenuItem key={link.label}>
-                        <Link href={link.href} legacyBehavior passHref>
-                            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                                {link.label}
-                            </NavigationMenuLink>
-                        </Link>
-                    </NavigationMenuItem>
-                ))}
+              {navLinks.map((link) => (
+                <NavigationMenuItem key={link.label}>
+                  <Link href={link.href} legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      {link.label}
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              ))}
             </NavigationMenuList>
           </NavigationMenu>
         </nav>
         <div className="flex items-center gap-4 md:hidden">
-            <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="text-gray-600 focus:outline-none focus:ring-2 focus:ring-red-400 rounded">
-                <Menu className="h-6 w-6" />
-            </button>
-        { mobileMenuOpen && <MobileNav setMobileMenuOpen={setMobileMenuOpen}/> }
-        {!session ? (
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="text-gray-600 focus:outline-none focus:ring-2 focus:ring-red-400 rounded"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+          {mobileMenuOpen && (
+            <MobileNav setMobileMenuOpen={setMobileMenuOpen} />
+          )}
+          {!session ? (
             <Link href="/signup">
               <Button>Sign Up</Button>
             </Link>
@@ -101,8 +109,8 @@ export function NavBar({
               <Button>My Account</Button>
             </Link>
           )}
-          </div>
-          <div className="hidden items-center gap-4 md:flex">
+        </div>
+        <div className="hidden items-center gap-4 md:flex">
           {!session ? (
             <>
               <Link href="/signup">

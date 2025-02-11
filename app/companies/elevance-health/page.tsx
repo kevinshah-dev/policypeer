@@ -19,11 +19,13 @@ import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
 
+// KEY = "elevance-health"
+
 export default async function CompanyProfile() {
   const { data, error } = await supabase
     .from("claims")
     .select("*")
-    .eq("company", "progressive");
+    .eq("company", "elevance-health");
 
   console.log("Claims Data:", data);
   return (
@@ -36,7 +38,7 @@ export default async function CompanyProfile() {
               <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
                 <Image
                   src="/elevancehealth.jpg"
-                  alt="Travelers Logo"
+                  alt="Elevance Health Logo"
                   width={80}
                   height={80}
                   className="object-contain"
@@ -52,7 +54,7 @@ export default async function CompanyProfile() {
               <div className="flex flex-col items-start w-full">
                 <div className="md:mb-1">
                   <h1 className="text-2xl md:text-3xl font-bold md:text-left">
-                    Travelers
+                    Elevance Health
                   </h1>
                 </div>
                 <div className="flex items-center justify-start  md:justify-start md:items-start md:flex-col">

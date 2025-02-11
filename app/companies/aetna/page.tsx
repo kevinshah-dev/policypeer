@@ -18,14 +18,25 @@ import { PolicyInformation } from "./policy-information";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
+import { Claim } from "@/types/claim";
 
 export default async function CompanyProfile() {
   const { data, error } = await supabase
     .from("claims")
     .select("*")
-    .eq("company", "progressive");
+    .eq("company", "aetna");
 
   console.log("Claims Data:", data);
+
+  const formattedClaims = (data ?? []).map((claim: Claim) => ({
+    ...claim,
+    claimDate: new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(Number(claim.claimAmount)),
+  }));
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
@@ -36,7 +47,7 @@ export default async function CompanyProfile() {
               <div className="w-24 h-24 rounded-lg border bg-white p-2 flex items-center justify-center">
                 <Image
                   src="/aetna.png"
-                  alt="Travelers Logo"
+                  alt="Aetna Logo"
                   width={80}
                   height={80}
                   className="object-contain"
@@ -95,13 +106,13 @@ export default async function CompanyProfile() {
               </TabsList>
               <div className="mt-6">
                 <TabsContent value="overview">
-                  <CompanyOverview claims={data ?? []} />
+                  <CompanyOverview claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="reviews">
                   <CompanyReviews />
                 </TabsContent>
                 <TabsContent value="claims">
-                  <ClaimHistory />
+                  <ClaimHistory claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="policies">
                   <PolicyInformation />

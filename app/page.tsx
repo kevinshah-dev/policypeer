@@ -268,7 +268,8 @@ export default function Home() {
             </summary>
             <p className="mt-2 text-sm text-muted-foreground">
               We gather data from real users who submit their policies and
-              verified claims...
+              verified claims. We also aggregate data from public claims
+              databases and forums.
             </p>
           </details>
           <details className="border-b pb-2">
@@ -276,8 +277,17 @@ export default function Home() {
               Is my personal information secure?
             </summary>
             <p className="mt-2 text-sm text-muted-foreground">
-              We keep your personal data completely anonymous.
-            </p>
+              We keep your personal data completely anonymous. Read our{" "}
+              <a
+                href="https://policypeer.org/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-500 hover:underline"
+              >
+                Privacy Policy
+              </a>{" "}
+              for more information.
+            </p>{" "}
           </details>
         </div>
       </section>

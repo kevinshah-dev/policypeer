@@ -23,7 +23,7 @@ export default async function CompanyProfile() {
   const { data, error } = await supabase
     .from("claims")
     .select("*")
-    .eq("company", "progressive");
+    .eq("company", "cigna");
 
   console.log("Claims Data:", data);
   return (

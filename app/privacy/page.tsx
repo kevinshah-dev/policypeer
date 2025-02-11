@@ -1,7 +1,7 @@
-import Link from "next/link"
-import { NavBar } from "@/components/navbar"
-import Footer from "@/components/footer"
-import { montserrat } from "@/lib/fonts/fonts"
+import Link from "next/link";
+import { NavBar } from "@/components/navbar";
+import Footer from "@/components/footer";
+import { montserrat } from "@/lib/fonts/fonts";
 
 export default function PrivacyPolicyPage() {
   return (
@@ -11,7 +11,6 @@ export default function PrivacyPolicyPage() {
         navLinks={[
           { label: "Companies", href: "/companies" },
           { label: "Privacy", href: "/privacy" },
-          { label: "Support", href: "/support" },
           { label: "Dictionary", href: "/dictionary" },
         ]}
         signInHref="/login"
@@ -34,12 +33,14 @@ export default function PrivacyPolicyPage() {
             consent to the data practices described in this policy.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8 mb-2">2. Information We Collect</h2>
+          <h2 className="text-xl font-semibold mt-8 mb-2">
+            2. Information We Collect
+          </h2>
           <ul className="list-disc ml-6 space-y-2">
             <li>
-              <strong>Account Data:</strong> If you sign up or log in, we collect
-              your email address, password, and any optional profile information
-              (like your name) to create your account.
+              <strong>Account Data:</strong> If you sign up or log in, we
+              collect your email address, password, and any optional profile
+              information (like your name) to create your account.
             </li>
             <li>
               <strong>Policy & Claims Submissions:</strong> We store the details
@@ -69,10 +70,9 @@ export default function PrivacyPolicyPage() {
               experience.
             </li>
             <li>
-              <strong>Analytics & Improvements:</strong> Aggregate or
-              anonymized data helps us analyze site usage, improve features, and
-              develop new tools to combat insurance fraud or pricing
-              inconsistencies.
+              <strong>Analytics & Improvements:</strong> Aggregate or anonymized
+              data helps us analyze site usage, improve features, and develop
+              new tools to combat insurance fraud or pricing inconsistencies.
             </li>
           </ul>
 
@@ -88,9 +88,7 @@ export default function PrivacyPolicyPage() {
             access controls for our internal systems.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8 mb-2">
-            5. Data Retention
-          </h2>
+          <h2 className="text-xl font-semibold mt-8 mb-2">5. Data Retention</h2>
           <p>
             We retain your data only as long as it remains relevant for
             processing insurance claims and maintaining a reliable user
@@ -110,7 +108,9 @@ export default function PrivacyPolicyPage() {
             disclosed without explicit consent.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8 mb-2">7. Cookies & Tracking</h2>
+          <h2 className="text-xl font-semibold mt-8 mb-2">
+            7. Cookies & Tracking
+          </h2>
           <p>
             PolicyPeer uses small text files (“cookies”) to remember your
             preferences, maintain your logged-in session, and understand site
@@ -118,7 +118,9 @@ export default function PrivacyPolicyPage() {
             settings, but disabling them may affect site functionality.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8 mb-2">8. Children’s Privacy</h2>
+          <h2 className="text-xl font-semibold mt-8 mb-2">
+            8. Children’s Privacy
+          </h2>
           <p>
             Our services are not directed to individuals under 16. We do not
             knowingly collect personal data from children. If you believe a
@@ -126,7 +128,9 @@ export default function PrivacyPolicyPage() {
             to have the account removed.
           </p>
 
-          <h2 className="text-xl font-semibold mt-8 mb-2">9. Changes to This Policy</h2>
+          <h2 className="text-xl font-semibold mt-8 mb-2">
+            9. Changes to This Policy
+          </h2>
           <p>
             We may update this policy periodically to reflect changes in our
             practices. We will notify you of any significant modifications via
@@ -139,8 +143,12 @@ export default function PrivacyPolicyPage() {
             please reach out at:
           </p>
           <address className="not-italic text-sm">
-            PolicyPeer<br />
-            <Link href="mailto:support@policypeer.com" className="underline text-blue-600">
+            PolicyPeer
+            <br />
+            <Link
+              href="mailto:support@policypeer.com"
+              className="underline text-blue-600"
+            >
               support@policypeer.com
             </Link>
           </address>
@@ -150,5 +158,5 @@ export default function PrivacyPolicyPage() {
       {/* Footer */}
       <Footer />
     </div>
-  )
+  );
 }

@@ -18,14 +18,27 @@ import { PolicyInformation } from "./policy-information";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
+import { Claim } from "@/types/claim";
+
+//KEY = "unitedhealthcare"
 
 export default async function CompanyProfile() {
   const { data, error } = await supabase
     .from("claims")
     .select("*")
-    .eq("company", "progressive");
+    .eq("company", "unitedhealthcare");
 
-  console.log("Claims Data:", data);
+  const formattedClaims = (data ?? []).map((claim: Claim) => ({
+    ...claim,
+    claimAmount: new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(Number(claim.claimAmount)),
+  }));
+
+  console.log("pre formattedClaims", data);
+  console.log("Claims Data:", formattedClaims);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
@@ -95,7 +108,7 @@ export default async function CompanyProfile() {
               </TabsList>
               <div className="mt-6">
                 <TabsContent value="overview">
-                  <CompanyOverview claims={data ?? []} />
+                  <CompanyOverview claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="reviews">
                   <CompanyReviews />

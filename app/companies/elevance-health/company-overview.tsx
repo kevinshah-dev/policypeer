@@ -136,7 +136,7 @@ export function CompanyOverview({ claims }: Props) {
               <PhoneCall className="h-5 w-5 text-green-600" />
               <span className="text-sm font-medium">Customer Service</span>
             </div>
-            <p className="text-sm">1-800-872-3862</p>
+            <p className="text-sm">833-401-1577</p>
           </div>
 
           {/* Drug Formulary PDF */}

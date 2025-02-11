@@ -18,6 +18,7 @@ type Props = {
 };
 
 export function CompanyOverview({ claims }: Props) {
+  console.log("united healthcare claims data", claims);
   return (
     <div className="space-y-6 p-4 md:p-0 flex-grow">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -136,7 +137,7 @@ export function CompanyOverview({ claims }: Props) {
               <PhoneCall className="h-5 w-5 text-green-600" />
               <span className="text-sm font-medium">Customer Service</span>
             </div>
-            <p className="text-sm">1-800-872-3862</p>
+            <p className="text-sm">1-866-801-4409</p>
           </div>
 
           {/* Drug Formulary PDF */}

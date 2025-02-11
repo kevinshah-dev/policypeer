@@ -19,11 +19,13 @@ import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
 
+//KEY = "state-farm"
+
 export default async function CompanyProfile() {
   const { data, error } = await supabase
     .from("claims")
     .select("*")
-    .eq("company", "progressive");
+    .eq("company", "state-farm");
 
   console.log("Claims Data:", data);
   return (

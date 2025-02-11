@@ -19,6 +19,8 @@ import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
 
+//KEY = "progressive"
+
 export default async function CompanyProfile() {
   const { data, error } = await supabase
     .from("claims")
