@@ -1,79 +1,37 @@
 // app/dictionary/[slug]/page.tsx
+export const runtime = "nodejs";
+
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { ArrowLeft } from "lucide-react";
+import { DICTIONARY_DATA } from "@/lib/dictionarydata";
+import path from "path";
+import fs from "fs";
+import { MDXRemote } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
+import MDXRemoteClient from "@/components/MDXRemoteClient";
 
-// If you already have your dictionary data defined elsewhere, import it.
-// For this example, we'll recreate it here.
-const slugify = (name: string) => name.toLowerCase().replace(/\s+/g, "-");
+const getDictionaryFilePath = (slug: string) =>
+  path.join(process.cwd(), "content", `${slug}.mdx`);
 
-interface DictionaryEntry {
-  term: string;
-  definition: string;
-  category?: string;
-  slug: string;
-}
-
-const DICTIONARY_DATA: DictionaryEntry[] = [
-  {
-    term: "Premium",
-    definition:
-      "The amount you pay for your insurance policy, typically monthly or annually.",
-    category: "General",
-    slug: slugify("Premium"),
-  },
-  {
-    term: "Deductible",
-    definition:
-      "The amount you pay out-of-pocket before your insurance covers the remaining costs.",
-    category: "General",
-    slug: slugify("Deductible"),
-  },
-  {
-    term: "Claim",
-    definition:
-      "A request made by the policyholder to the insurance company for compensation based on the policy terms.",
-    category: "General",
-    slug: slugify("Claim"),
-  },
-  {
-    term: "Underwriting",
-    definition:
-      "The process by which an insurer evaluates the risk of insuring a home, car, driver, or individual's health or life.",
-    category: "General",
-    slug: slugify("Underwriting"),
-  },
-  {
-    term: "Endorsement",
-    definition:
-      "An amendment or addition to an existing insurance policy that changes the terms or coverage.",
-    category: "General",
-    slug: slugify("Endorsement"),
-  },
-  {
-    term: "Exclusion",
-    definition:
-      "Specific conditions or circumstances for which the policy does not provide coverage.",
-    category: "General",
-    slug: slugify("Exclusion"),
-  },
-];
-
-export default function DictionaryEntryPage({
+export default async function DictionaryEntryPage({
   params,
 }: {
   params: { slug: string };
 }) {
   const { slug } = params;
-  const entry = DICTIONARY_DATA.find((entry) => entry.slug === slug);
+  const filePath = getDictionaryFilePath(slug);
 
-  // If the entry is not found, you can render a 404 page.
-  if (!entry) {
+  if (!fs.existsSync(filePath)) {
+    console.log("File not found", filePath);
     notFound();
   }
+
+  const source = fs.readFileSync(filePath, "utf8");
+  const mdxSource = await serialize(source);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -88,13 +46,9 @@ export default function DictionaryEntryPage({
             Back to Dictionary
           </Link>
         </div>
-        <h1 className="text-4xl font-bold mb-4">{entry.term}</h1>
-        <p className="text-lg mb-4">{entry.definition}</p>
-        {entry.category && (
-          <Badge variant="secondary" className="mb-4">
-            {entry.category}
-          </Badge>
-        )}
+        <article className="prose lg:prose-xl">
+          <MDXRemoteClient source={mdxSource} />
+        </article>
       </main>
     </div>
   );

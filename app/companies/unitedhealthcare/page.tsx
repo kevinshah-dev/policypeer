@@ -203,22 +203,6 @@ export default async function CompanyProfile() {
           </div>
         </div>
       </div>
-      <div
-        className="border-t pt-2 text-xs text-gray-500 mt-4 md:mt-0 md:border-none md:pt-0"
-        id="footnote-1"
-      >
-        <p>
-          [1]{" "}
-          <a
-            href="https://www.elevancehealth.com/who-we-are/companies"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-blue-600"
-          >
-            Anthem Blue Cross and Blue Shield - Official Website
-          </a>
-        </p>
-      </div>
     </div>
   );
 }
