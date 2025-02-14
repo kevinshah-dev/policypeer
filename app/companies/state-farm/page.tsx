@@ -18,6 +18,7 @@ import { PolicyInformation } from "./policy-information";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
+import { Claim } from "@/types/claim";
 
 //KEY = "state-farm"
 
@@ -26,6 +27,17 @@ export default async function CompanyProfile() {
     .from("claims")
     .select("*")
     .eq("company", "state-farm");
+
+  console.log("Claims Data:", data);
+
+  const formattedClaims = (data ?? []).map((claim: Claim) => ({
+    ...claim,
+    claimDate: new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(Number(claim.claimAmount)),
+  }));
 
   console.log("Claims Data:", data);
   return (
@@ -97,13 +109,13 @@ export default async function CompanyProfile() {
               </TabsList>
               <div className="mt-6">
                 <TabsContent value="overview">
-                  <CompanyOverview claims={data ?? []} />
+                  <CompanyOverview claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="reviews">
                   <CompanyReviews />
                 </TabsContent>
                 <TabsContent value="claims">
-                  <ClaimHistory />
+                  <ClaimHistory claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="policies">
                   <PolicyInformation />

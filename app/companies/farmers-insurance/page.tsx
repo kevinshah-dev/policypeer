@@ -18,6 +18,7 @@ import { PolicyInformation } from "./policy-information";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
+import { Claim } from "@/types/claim";
 
 // KEY = "farmers"
 
@@ -26,6 +27,17 @@ export default async function CompanyProfile() {
     .from("claims")
     .select("*")
     .eq("company", "farmers");
+
+  console.log("Claims Data:", data);
+
+  const formattedClaims = (data ?? []).map((claim: Claim) => ({
+    ...claim,
+    claimDate: new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(Number(claim.claimAmount)),
+  }));
 
   console.log("Claims Data:", data);
   return (
@@ -54,7 +66,7 @@ export default async function CompanyProfile() {
               <div className="flex flex-col items-start w-full">
                 <div className="md:mb-1">
                   <h1 className="text-2xl md:text-3xl font-bold md:text-left">
-                    Elevance Health
+                    Farmers Insurance
                   </h1>
                 </div>
                 <div className="flex items-center justify-start  md:justify-start md:items-start md:flex-col">
@@ -97,13 +109,13 @@ export default async function CompanyProfile() {
               </TabsList>
               <div className="mt-6">
                 <TabsContent value="overview">
-                  <CompanyOverview claims={data ?? []} />
+                  <CompanyOverview claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="reviews">
                   <CompanyReviews />
                 </TabsContent>
                 <TabsContent value="claims">
-                  <ClaimHistory />
+                  <ClaimHistory claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="policies">
                   <PolicyInformation />

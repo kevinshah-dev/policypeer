@@ -50,41 +50,18 @@ export function ClaimHistory({ claims }: Props) {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {[
-                  {
-                    type: "Auto Collision",
-                    date: "Dec 12, 2023",
-                    amount: "$12,500",
-                    status: "Approved",
-                  },
-                  {
-                    type: "Property Damage",
-                    date: "Nov 28, 2023",
-                    amount: "$8,750",
-                    status: "Approved",
-                  },
-                  {
-                    type: "Medical Expenses",
-                    date: "Nov 15, 2023",
-                    amount: "$3,200",
-                    status: "In Review",
-                  },
-                  {
-                    type: "Auto Theft",
-                    date: "Oct 30, 2023",
-                    amount: "$22,000",
-                    status: "Approved",
-                  },
-                ].map((claim) => (
+                {claims.map((claim) => (
                   <TableRow
-                    key={claim.date}
+                    key={claim.claimDate}
                     className="cursor-pointer hover:bg-gray-100 transition-colors"
                     onClick={() => handleRowClick()}
                   >
                     {" "}
                     <TableCell className="text-sm">{claim.type}</TableCell>{" "}
-                    <TableCell className="text-sm">{claim.date}</TableCell>{" "}
-                    <TableCell className="text-sm">{claim.amount}</TableCell>{" "}
+                    <TableCell className="text-sm">{claim.claimDate}</TableCell>{" "}
+                    <TableCell className="text-sm">
+                      {claim.claimAmount}
+                    </TableCell>{" "}
                     <TableCell>
                       <span
                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${

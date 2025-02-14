@@ -20,6 +20,8 @@ import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
 import { Claim } from "@/types/claim";
 
+// KEY = "aetna"
+
 export default async function CompanyProfile() {
   const { data, error } = await supabase
     .from("claims")

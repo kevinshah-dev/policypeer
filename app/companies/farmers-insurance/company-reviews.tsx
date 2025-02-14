@@ -1,6 +1,7 @@
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Star, ThumbsUp, MessageSquare } from 'lucide-react'
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Star, ThumbsUp, MessageSquare } from "lucide-react";
+import Link from "next/link";
 
 export function CompanyReviews() {
   return (
@@ -8,7 +9,11 @@ export function CompanyReviews() {
       <Card className="p-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-semibold">Customer Reviews</h2>
-          <Button>Write a Review</Button>
+          <Link href="/addreview?company=farmers" passHref>
+            <Button asChild>
+              <span>Write a Review</span>
+            </Button>
+          </Link>
         </div>
 
         <div className="space-y-6">
@@ -44,20 +49,30 @@ export function CompanyReviews() {
               replies: 1,
             },
           ].map((review) => (
-            <div key={review.title} className="border-b pb-6 last:border-b-0 last:pb-0">
+            <div
+              key={review.title}
+              className="border-b pb-6 last:border-b-0 last:pb-0"
+            >
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2">
                   <div className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center">
-                    <span className="text-sm font-medium">{review.author[0]}</span>
+                    <span className="text-sm font-medium">
+                      {review.author[0]}
+                    </span>
                   </div>
                   <div>
                     <div className="font-medium">{review.author}</div>
-                    <div className="text-sm text-muted-foreground">{review.date}</div>
+                    <div className="text-sm text-muted-foreground">
+                      {review.date}
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center">
                   {Array.from({ length: review.rating }).map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                    />
                   ))}
                 </div>
               </div>
@@ -78,5 +93,5 @@ export function CompanyReviews() {
         </div>
       </Card>
     </div>
-  )
+  );
 }

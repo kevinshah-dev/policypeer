@@ -36,6 +36,16 @@ export default function CompaniesClient({
   const [sortKey, setSortKey] = useState<keyof Company | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
 
+  const getTagClasses = (type: string) => {
+    const lowerType = type.toLowerCase();
+    if (lowerType.includes("car")) {
+      return "bg-blue-100 text-blue-800";
+    } else if (lowerType.includes("health")) {
+      return "bg-green-100 text-green-800";
+    }
+    return "bg-gray-100 text-gray-800";
+  };
+
   // Filter the list
   const filtered = companies.filter((c) =>
     c.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -129,7 +139,13 @@ export default function CompaniesClient({
                     </div>
                   </TableCell>
                   <TableCell className="px-4 py-2">
-                    {company.insurance_type}
+                    <span
+                      className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${getTagClasses(
+                        company.insurance_type
+                      )}`}
+                    >
+                      {company.insurance_type}
+                    </span>
                   </TableCell>
                 </TableRow>
               ))}

@@ -114,7 +114,7 @@ export default async function CompanyProfile() {
                   <CompanyReviews />
                 </TabsContent>
                 <TabsContent value="claims">
-                  <ClaimHistory />
+                  <ClaimHistory claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="policies">
                   <PolicyInformation />
