@@ -74,7 +74,7 @@ export default async function CompanyProfile() {
                     <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     <span className="ml-1 font-semibold">4.2</span>
                     <span className="text-muted-foreground ml-1 text-xs md:text-base">
-                      (2,456 Reviews)
+                      (5 Reviews)
                     </span>
                   </div>
                 </div>

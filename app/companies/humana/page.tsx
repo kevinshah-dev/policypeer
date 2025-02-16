@@ -74,7 +74,7 @@ export default async function CompanyProfile() {
                     <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     <span className="ml-1 font-semibold">4.2</span>
                     <span className="text-muted-foreground ml-1 text-xs md:text-base">
-                      (2,456 Reviews)
+                      (13 Reviews)
                     </span>
                   </div>
                 </div>
@@ -133,7 +133,7 @@ export default async function CompanyProfile() {
                   <div>
                     <div className="font-medium">Customers</div>
                     <div className="text-sm text-muted-foreground">
-                      83.9M policies in force
+                      16.9 million total members
                     </div>
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export default async function CompanyProfile() {
                   <div>
                     <div className="font-medium">Founded</div>
                     <div className="text-sm text-muted-foreground">
-                      1946, Indianapolis, IN
+                      1961, Louisville, KY
                     </div>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default async function CompanyProfile() {
                   <div>
                     <div className="font-medium">Revenue</div>
                     <div className="text-sm text-muted-foreground">
-                      $171.34 Billion (2023)
+                      $106.37 Billion (2023)
                     </div>
                   </div>
                 </div>
@@ -160,7 +160,7 @@ export default async function CompanyProfile() {
                   <div>
                     <div className="font-medium">Financial Strength</div>
                     <div className="text-sm text-muted-foreground">
-                      A++ (Superior)
+                      B (Fair)
                     </div>
                   </div>
                 </div>
@@ -169,7 +169,7 @@ export default async function CompanyProfile() {
                   <div>
                     <div className="font-medium">Claims Satisfaction</div>
                     <div className="text-sm text-muted-foreground">
-                      3.2/5 (Industry: 4.2)
+                      4.0/5 (Industry: 4.2)
                     </div>
                   </div>
                 </div>

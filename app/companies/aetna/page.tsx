@@ -73,7 +73,7 @@ export default async function CompanyProfile() {
                     <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     <span className="ml-1 font-semibold">4.2</span>
                     <span className="text-muted-foreground ml-1 text-xs md:text-base">
-                      (2,456 Reviews)
+                      (28 Reviews)
                     </span>
                   </div>
                 </div>
@@ -132,25 +132,7 @@ export default async function CompanyProfile() {
                   <div>
                     <div className="font-medium">Customers</div>
                     <div className="text-sm text-muted-foreground">
-                      83.9M policies in force
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Building2 className="w-5 h-5 text-blue-500" />
-                  <div>
-                    <div className="font-medium">Founded</div>
-                    <div className="text-sm text-muted-foreground">
-                      1946, Indianapolis, IN
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3">
-                  <DollarSign className="w-5 h-5 text-blue-500" />
-                  <div>
-                    <div className="font-medium">Revenue</div>
-                    <div className="text-sm text-muted-foreground">
-                      $171.34 Billion (2023)
+                      36 Million
                     </div>
                   </div>
                 </div>
@@ -159,7 +141,16 @@ export default async function CompanyProfile() {
                   <div>
                     <div className="font-medium">Financial Strength</div>
                     <div className="text-sm text-muted-foreground">
-                      A++ (Superior)
+                      B+ (Good)
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <DollarSign className="w-5 h-5 text-blue-500" />
+                  <div>
+                    <div className="font-medium">Revenue</div>
+                    <div className="text-sm text-muted-foreground">
+                      $105.6 Billion (2023)
                     </div>
                   </div>
                 </div>
@@ -169,6 +160,15 @@ export default async function CompanyProfile() {
                     <div className="font-medium">Claims Satisfaction</div>
                     <div className="text-sm text-muted-foreground">
                       3.2/5 (Industry: 4.2)
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Building2 className="w-5 h-5 text-blue-500" />
+                  <div>
+                    <div className="font-medium">Founded</div>
+                    <div className="text-sm text-muted-foreground">
+                      1819, Hartford, CT
                     </div>
                   </div>
                 </div>
