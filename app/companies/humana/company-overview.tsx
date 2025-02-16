@@ -120,7 +120,7 @@ export function CompanyOverview({ claims }: Props) {
               <span className="text-sm font-medium">Official Website</span>
             </div>
             <Link
-              href="https://www.aetna.com/"
+              href="https://www.humana.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-blue-600 underline hover:text-blue-500"
