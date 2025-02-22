@@ -31,6 +31,7 @@ type InsuranceProvider = {
 type InsuranceProviders = {
   car: InsuranceProvider[];
   health: InsuranceProvider[];
+  home: InsuranceProvider[];
 };
 
 type NavLink = {
@@ -76,6 +77,19 @@ export default function Home() {
       { name: "Humana", premium: "$245 - $415/mo", rating: 3.1 },
       { name: "Kaiser Permanente", premium: "$320 - $560/mo", rating: 3.9 },
     ],
+    home: [
+      {
+        name: "State Farm Home",
+        premium: "$140 - $252/mo",
+        rating: 4.2,
+        isMostViewed: true,
+      },
+      { name: "The Hartford", premium: "$111 - $317/mo", rating: 4.0 },
+      { name: "American Family", premium: "$66 - $232/mo", rating: 4.2 },
+      { name: "Chubb", premium: "$82 - $470/mo", rating: 4.1 },
+      { name: "Farmers Home", premium: "$216 - $317/mo", rating: 3.8 },
+      { name: "Amica", premium: "$125 - $251/mo", rating: 4.3 },
+    ],
   };
 
   const allCompanies = [
@@ -117,9 +131,9 @@ export default function Home() {
     };
   }, []);
 
-  const [selectedInsurance, setSelectedInsurance] = useState<"car" | "health">(
-    "health"
-  );
+  const [selectedInsurance, setSelectedInsurance] = useState<
+    "car" | "health" | "home"
+  >("health");
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -193,7 +207,7 @@ export default function Home() {
             <Select
               value={selectedInsurance}
               onValueChange={(value) =>
-                setSelectedInsurance(value as "car" | "health")
+                setSelectedInsurance(value as "car" | "health" | "home")
               }
             >
               <SelectTrigger className="border border-red-200 rounded-md px-2 hover:bg-transparent focus:ring-0 shadow-none font-bold text-2xl text-red-700">
@@ -202,6 +216,7 @@ export default function Home() {
               <SelectContent>
                 <SelectItem value="car">Car Insurance</SelectItem>
                 <SelectItem value="health">Health Insurance</SelectItem>
+                <SelectItem value="home">Home Insurance</SelectItem>
               </SelectContent>
             </Select>
             <h2 className="text-2xl font-bold">Providers</h2>

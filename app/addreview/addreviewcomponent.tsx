@@ -20,7 +20,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Upload } from "lucide-react";
-import { CompanySelect } from "@/components/companyselect";
+import { CompanySelect } from "@/components/selectcomponents/companyselect";
 import { Checkbox } from "@/components/ui/checkbox";
 
 type ReviewInsert = {

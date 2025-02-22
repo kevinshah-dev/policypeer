@@ -52,4 +52,11 @@ export const DICTIONARY_DATA: DictionaryEntry[] = [
     category: "General",
     slug: slugify("Exclusion"),
   },
+  {
+    term: "Health Maintenance Organization (HMO)",
+    definition:
+      "A health maintenance organization (HMO) is a medical insurance network that provides health services through a specific group of contracted healthcare providers for a fixed fee, typically requiring members to use in-network doctors and get referrals from a primary care physician for specialist visits",
+    category: "Health Insurance",
+    slug: slugify("hmo"),
+  },
 ];
