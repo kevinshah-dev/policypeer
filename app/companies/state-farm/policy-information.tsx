@@ -1,112 +1,94 @@
-import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+// app/companies/state-farm/policy-information.tsx
+"use client";
+
+import { Card } from "@/components/ui/card";
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
+import { useEffect, useState } from "react";
+
+type Policy = {
+  id: string;
+  company: string;
+  premium: number;
+  coverageType: string;
+  deductible: number;
+  coverageLimit: number;
+  submissionType: string;
+  planDetails: string;
+  created_at: string;
+};
 
 export function PolicyInformation() {
+  const [policies, setPolicies] = useState<Policy[]>([]);
+
+  useEffect(() => {
+    const fetchPolicies = async () => {
+      const { data, error } = await supabase
+        .from("policies")
+        .select("*")
+        .eq("company", "state-farm")
+        .order("created_at", { ascending: false });
+
+      if (!error && data) setPolicies(data);
+    };
+    fetchPolicies();
+  }, []);
+
+  const formatCurrency = (value: number) =>
+    new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(value);
+
   return (
     <div className="space-y-6">
       <Card className="p-6">
-        <h2 className="text-xl font-semibold mb-6">Available Insurance Policies</h2>
-        <Accordion type="single" collapsible className="w-full">
-          {[
-            {
-              name: "Auto Insurance",
-              description: "Comprehensive coverage for your vehicles",
-              coverage: [
-                "Collision Coverage",
-                "Comprehensive Coverage",
-                "Liability Protection",
-                "Personal Injury Protection",
-                "Uninsured Motorist Coverage",
-              ],
-              features: [
-                "24/7 Roadside Assistance",
-                "Rental Car Coverage",
-                "Accident Forgiveness",
-                "Safe Driver Discounts",
-              ],
-              startingPrice: "$89/month",
-            },
-            {
-              name: "Home Insurance",
-              description: "Protection for your home and personal property",
-              coverage: [
-                "Dwelling Coverage",
-                "Personal Property Protection",
-                "Liability Coverage",
-                "Additional Living Expenses",
-                "Medical Payments Coverage",
-              ],
-              features: [
-                "Replacement Cost Coverage",
-                "Extended Dwelling Coverage",
-                "Bundling Discounts",
-                "Home Security Discounts",
-              ],
-              startingPrice: "$125/month",
-            },
-            {
-              name: "Life Insurance",
-              description: "Financial security for your loved ones",
-              coverage: [
-                "Death Benefit",
-                "Cash Value Accumulation",
-                "Living Benefits",
-                "Premium Waiver",
-                "Accelerated Death Benefit",
-              ],
-              features: [
-                "Flexible Premium Options",
-                "Policy Conversion Options",
-                "Multiple Beneficiaries",
-                "Tax-Advantaged Growth",
-              ],
-              startingPrice: "$45/month",
-            },
-          ].map((policy) => (
-            <AccordionItem key={policy.name} value={policy.name}>
-              <AccordionTrigger className="hover:no-underline">
-                <div className="flex items-center gap-4">
-                  <span>{policy.name}</span>
-                  <Badge variant="secondary">{policy.startingPrice}</Badge>
-                </div>
-              </AccordionTrigger>
-              <AccordionContent>
-                <div className="pt-4 space-y-4">
-                  <p className="text-muted-foreground">{policy.description}</p>
-                  
-                  <div>
-                    <h4 className="font-medium mb-2">Coverage Includes:</h4>
-                    <ul className="list-disc pl-5 space-y-1">
-                      {policy.coverage.map((item) => (
-                        <li key={item} className="text-sm text-muted-foreground">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+        <div className="flex items-center justify-between mb-4">
+          <h2 className="text-xl font-semibold">Policies</h2>
+          <Link href="/addhealthpolicy">
+            <Button className="text-xs md:text-sm">Add Policy</Button>
+          </Link>
+        </div>
 
-                  <div>
-                    <h4 className="font-medium mb-2">Key Features:</h4>
-                    <ul className="list-disc pl-5 space-y-1">
-                      {policy.features.map((feature) => (
-                        <li key={feature} className="text-sm text-muted-foreground">
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+        <div className="overflow-x-auto w-full">
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Created</TableHead>
+                <TableHead>Type</TableHead>
+                <TableHead>Premium</TableHead>
+                <TableHead>Deductible</TableHead>
+                <TableHead>Coverage Limit</TableHead>
+                <TableHead>Submission</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {policies.map((policy) => (
+                <TableRow key={policy.id}>
+                  <TableCell>
+                    {new Date(policy.created_at).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell>{policy.coverageType}</TableCell>
+                  <TableCell>{formatCurrency(policy.premium)}</TableCell>
+                  <TableCell>{formatCurrency(policy.deductible)}</TableCell>
+                  <TableCell>{formatCurrency(policy.coverageLimit)}</TableCell>
+                  <TableCell>{policy.submissionType}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </Card>
     </div>
-  )
+  );
 }

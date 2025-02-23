@@ -1,86 +1,138 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { supabase } from "@/lib/supabase"
-import { useRouter } from "next/navigation"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { montserrat } from "@/lib/fonts/fonts"
-import Link from "next/link"
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { montserrat } from "@/lib/fonts/fonts";
+import Link from "next/link";
+import Footer from "@/components/footer";
 
 type Claim = {
-  id: number
-  claimDescription: string
-  claimDate: string
-  claimAmount: string
-  status: string
-}
+  id: number;
+  claimDescription: string;
+  claimDate: string;
+  claimAmount: string;
+  status: string;
+};
 type Policy = {
-  id: number
-  policyType: string
-  createdAt: string
-  premium: string
-  coverageType?: string
-}
+  id: number;
+  policyType: string;
+  createdAt: string;
+  premium: string;
+  coverageType?: string;
+};
 
 export default function MyAccountPage() {
-  const router = useRouter()
-  const [session, setSession] = useState<any>(null)
-  const [claims, setClaims] = useState<Claim[]>([])
-  const [policies, setPolicies] = useState<Policy[]>([])
-  const [loading, setLoading] = useState(true)
+  const router = useRouter();
+  const [session, setSession] = useState<any>(null);
+  const [claims, setClaims] = useState<Claim[]>([]);
+  const [policies, setPolicies] = useState<Policy[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [demographicData, setDemographicData] = useState<any>(null);
+  const [formData, setFormData] = useState({
+    age: "",
+    dob: "",
+    city: "",
+    country: "",
+    gender: "",
+  });
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
       if (!data.session) {
-        router.push("/login")
+        router.push("/login");
       } else {
-        setSession(data.session)
+        setSession(data.session);
       }
-    })
-  }, [router])
+    });
+  }, [router]);
 
   useEffect(() => {
-    if (!session) return
+    if (!session) return;
 
     async function fetchData() {
       try {
-        setLoading(true)
+        setLoading(true);
 
         // Fetch claims by user id
         const { data: userClaims, error: claimsError } = await supabase
           .from("claims")
           .select("*")
-          .eq("user_id", session.user.id) // Adjust column name if needed
-        if (claimsError) throw claimsError
-        setClaims(userClaims || [])
+          .eq("user_id", session.user.id);
+        if (claimsError) throw claimsError;
+        setClaims(userClaims || []);
 
         // Fetch policies by user id
         const { data: userPolicies, error: policiesError } = await supabase
           .from("policies")
           .select("*")
-          .eq("user_id", session.user.id) // Adjust column name if needed
-        if (policiesError) throw policiesError
-        setPolicies(userPolicies || [])
-
+          .eq("user_id", session.user.id);
+        if (policiesError) throw policiesError;
+        setPolicies(userPolicies || []);
       } catch (err: any) {
-        console.error("Error fetching data:", err.message)
+        console.error("Error fetching data:", err.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
+      }
+
+      const { data: userDemo, error: demoError } = await supabase
+        .from("userdemo")
+        .select("*")
+        .eq("user_id", session.user.id)
+        .order("created_at", { ascending: false })
+        .limit(1);
+
+      if (!demoError && userDemo?.length) {
+        setDemographicData(userDemo[0]);
+        setFormData({
+          age: userDemo[0].age?.toString() || "",
+          dob: userDemo[0].dob || "",
+          city: userDemo[0].city || "",
+          country: userDemo[0].country || "",
+          gender: userDemo[0].gender || "",
+        });
       }
     }
 
-    fetchData()
-  }, [session])
+    fetchData();
+  }, [session]);
 
   async function handleLogout() {
-    await supabase.auth.signOut()
-    router.push("/")
+    await supabase.auth.signOut();
+    router.push("/");
   }
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      console.log("handle submit hitting");
+      const { error } = await supabase.from("userdemo").insert([
+        {
+          ...formData,
+          user_id: session?.user?.id,
+        },
+      ]);
+
+      if (error) throw error;
+      alert("Demographic Data Saved Successfully");
+    } catch (error) {
+      console.error("Error saving demographic data:", error);
+      alert("Error saving demographic data. Please try again.");
+    }
+  };
+
   if (!session) {
-    return null
+    return null;
   }
 
   return (
@@ -89,10 +141,7 @@ export default function MyAccountPage() {
         <div className="container mx-auto px-4 py-6 flex items-center justify-between">
           <h1 className="text-2xl font-bold">My Account</h1>
 
-          <Button
-            variant="outline"
-            onClick={() => router.push("/")}
-          >
+          <Button variant="outline" onClick={() => router.push("/")}>
             Home
           </Button>
         </div>
@@ -224,12 +273,92 @@ export default function MyAccountPage() {
           )}
         </Card>
 
+        <Card className="mb-8 p-6">
+          <h2 className={`${montserrat.className} text-xl font-semibold mb-4`}>
+            Demographic Information
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">Age</label>
+                <input
+                  type="number"
+                  className="w-full p-2 border rounded"
+                  value={formData.age}
+                  onChange={(e) =>
+                    setFormData({ ...formData, age: e.target.value })
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">
+                  Date of Birth
+                </label>
+                <input
+                  type="date"
+                  className="w-full p-2 border rounded"
+                  value={formData.dob}
+                  onChange={(e) =>
+                    setFormData({ ...formData, dob: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">City</label>
+                <input
+                  type="text"
+                  className="w-full p-2 border rounded"
+                  value={formData.city}
+                  onChange={(e) =>
+                    setFormData({ ...formData, city: e.target.value })
+                  }
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-medium">Country</label>
+                <input
+                  type="text"
+                  className="w-full p-2 border rounded"
+                  value={formData.country}
+                  onChange={(e) =>
+                    setFormData({ ...formData, country: e.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="space-y-2">
+              <label className="block text-sm font-medium">Gender</label>
+              <select
+                className="w-full p-2 border rounded"
+                value={formData.gender}
+                onChange={(e) =>
+                  setFormData({ ...formData, gender: e.target.value })
+                }
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <Button type="submit" className="mt-4">
+              Save Demographic Information
+            </Button>
+          </form>
+        </Card>
+
         <div className="pt-4 border-t flex justify-end">
-          <Button onClick={handleLogout} className="bg-red-600 hover:bg-red-500">
+          <Button
+            onClick={handleLogout}
+            className="bg-red-600 hover:bg-red-500"
+          >
             Logout
           </Button>
         </div>
       </main>
+      <Footer />
     </div>
-  )
+  );
 }
