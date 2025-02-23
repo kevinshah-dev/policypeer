@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { Button } from "@/components/ui/button"
+import * as React from "react";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/ui/popover";
 import {
   Command,
   CommandEmpty,
@@ -14,13 +14,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
-import { Check, ChevronsUpDown } from "lucide-react"
-import { cn } from "@/lib/utils"
+} from "@/components/ui/command";
+import { Check, ChevronsUpDown } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface CompanyOption {
-  label: string
-  value: string
+  label: string;
+  value: string;
 }
 
 const COMPANY_OPTIONS: CompanyOption[] = [
@@ -39,25 +39,28 @@ const COMPANY_OPTIONS: CompanyOption[] = [
   { label: "Cigna", value: "cigna" },
   { label: "Humana", value: "humana" },
   { label: "Kaiser Permanente", value: "kaiser-permanente" },
-]
+  { label: "American Family", value: "american-family" },
+  { label: "Chubb", value: "chubb" },
+  { label: "The Hartford", value: "the-hartford" },
+];
 
 interface CompanySelectProps {
-  value: string
-  onChange: (newValue: string) => void
+  value: string;
+  onChange: (newValue: string) => void;
 }
 
 export function CompanySelect({ value, onChange }: CompanySelectProps) {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(false);
 
   const selectedLabel = React.useMemo(() => {
-    const found = COMPANY_OPTIONS.find((opt) => opt.value === value)
-    return found ? found.label : "Select a company"
-  }, [value])
+    const found = COMPANY_OPTIONS.find((opt) => opt.value === value);
+    return found ? found.label : "Select a company";
+  }, [value]);
 
   const handleSelect = (val: string) => {
-    onChange(val)
-    setOpen(false)
-  }
+    onChange(val);
+    setOpen(false);
+  };
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -97,5 +100,5 @@ export function CompanySelect({ value, onChange }: CompanySelectProps) {
         </Command>
       </PopoverContent>
     </Popover>
-  )
+  );
 }
