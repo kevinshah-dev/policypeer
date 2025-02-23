@@ -16,7 +16,7 @@ import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
-// Define a type for your navigation links
+//Navigation link type
 interface NavLink {
   label: string;
   href: string;
@@ -72,7 +72,6 @@ export function NavBar({
           {logoText}
         </Link>
 
-        {/* Navigation Links (using Shadcn NavigationMenu) */}
         <nav className="hidden md:flex items-center gap-6">
           <NavigationMenu>
             <NavigationMenuList>
@@ -110,6 +109,9 @@ export function NavBar({
             </Link>
           )}
         </div>
+        {
+          // Display different top right buttons based on whether or not user is logged in
+        }
         <div className="hidden items-center gap-4 md:flex">
           {!session ? (
             <>
