@@ -69,7 +69,9 @@ export function ClaimHistory({ claims }: Props) {
                   >
                     {" "}
                     {/* Added hover effect and cursor pointer */}
-                    <TableCell className="text-sm">{claim.type}</TableCell>{" "}
+                    <TableCell className="text-sm">
+                      {claim.claim_category}
+                    </TableCell>{" "}
                     {/* Reduced table cell font size */}
                     <TableCell className="text-sm">
                       {claim.claimDate}

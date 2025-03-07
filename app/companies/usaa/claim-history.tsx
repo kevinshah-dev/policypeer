@@ -57,7 +57,9 @@ export function ClaimHistory({ claims }: Props) {
                     onClick={() => handleRowClick()}
                   >
                     {" "}
-                    <TableCell className="text-sm">{claim.type}</TableCell>{" "}
+                    <TableCell className="text-sm">
+                      {claim.claim_category}
+                    </TableCell>{" "}
                     <TableCell className="text-sm">{claim.claimDate}</TableCell>{" "}
                     <TableCell className="text-sm">
                       {claim.claimAmount}
