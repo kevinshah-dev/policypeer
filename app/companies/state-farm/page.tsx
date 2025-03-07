@@ -185,7 +185,6 @@ export default async function CompanyProfile() {
                   { name: "GEICO", rating: "4.3" },
                   { name: "Progressive", rating: "4.1" },
                   { name: "Allstate", rating: "4.0" },
-                  { name: "Liberty Mutual", rating: "3.9" },
                 ].map((company) => (
                   <Link
                     key={company.name}
