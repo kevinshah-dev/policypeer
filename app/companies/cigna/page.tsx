@@ -182,14 +182,18 @@ export default async function CompanyProfile() {
               </h3>
               <div className="space-y-4">
                 {[
-                  { name: "GEICO", rating: "4.3" },
-                  { name: "Progressive", rating: "4.1" },
-                  { name: "Allstate", rating: "4.0" },
-                  { name: "Liberty Mutual", rating: "3.9" },
+                  { name: "GEICO", rating: "4.3", slug: "geico" },
+                  { name: "Progressive", rating: "4.1", slug: "progressive" },
+                  { name: "Allstate", rating: "4.0", slug: "allstate" },
+                  {
+                    name: "Liberty Mutual",
+                    rating: "3.9",
+                    slug: "liberty-mutual",
+                  },
                 ].map((company) => (
                   <Link
                     key={company.name}
-                    href={`/companies/${company.name.toLowerCase()}`}
+                    href={`/companies/${company.slug}`}
                     className="flex items-center justify-between hover:bg-gray-50 p-2 rounded-lg transition-colors"
                   >
                     <span className="font-medium">{company.name}</span>
