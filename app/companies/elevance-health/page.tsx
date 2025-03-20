@@ -32,7 +32,7 @@ export default async function CompanyProfile() {
 
   const formattedClaims = (data ?? []).map((claim: Claim) => ({
     ...claim,
-    claimDate: new Intl.NumberFormat("en-US", {
+    claimAmount: new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
       maximumFractionDigits: 0,

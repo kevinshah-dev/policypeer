@@ -313,6 +313,7 @@ export default function AddInsuranceClaim() {
                       <SelectItem value="mental-health">
                         Mental Health
                       </SelectItem>
+                      <SelectItem value="surgery">Surgery</SelectItem>
                     </SelectContent>
                   </Select>
                 )}

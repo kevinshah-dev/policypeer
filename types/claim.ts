@@ -3,7 +3,7 @@ export interface Claim {
   type: string;
   claimDate: string;
   claimAmount: string;
-  status: string;
+  claimStatus: string;
   claimDescription: string;
   claim_category: string;
 }

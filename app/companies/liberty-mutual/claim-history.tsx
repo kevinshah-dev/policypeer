@@ -82,12 +82,12 @@ export function ClaimHistory({ claims }: Props) {
                     <TableCell>
                       <span
                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                          claim.status === "Approved"
+                          claim.claimStatus === "approved"
                             ? "bg-green-100 text-green-800"
                             : "bg-yellow-100 text-yellow-800"
                         }`}
                       >
-                        {claim.status}
+                        {claim.claimStatus}
                       </span>
                     </TableCell>
                   </TableRow>
