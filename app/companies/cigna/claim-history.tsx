@@ -37,7 +37,9 @@ export function ClaimHistory({ claims }: Props) {
             {" "}
             {/* Adjusted margin for mobile */}
             <h2 className="text-xl font-semibold">Claims</h2>
-            <Button className="text-xs md:text-sm">Submit A Claim</Button>{" "}
+            <Link href="/addclaim">
+              <Button className="text-xs md:text-sm">Submit A Claim</Button>{" "}
+            </Link>
             {/* Adjusted button font size */}
           </div>
           <h3 className="font-semibold mb-3 md:mb-4">Recent Claims History</h3>{" "}

@@ -34,7 +34,9 @@ export function ClaimHistory({ claims }: Props) {
           <div className="flex items-center justify-between mb-3 md:mb-4">
             {" "}
             <h2 className="text-xl font-semibold">Claims</h2>
-            <Button className="text-xs md:text-sm">Submit A Claim</Button>{" "}
+            <Link href="/addclaim">
+              <Button className="text-xs md:text-sm">Submit A Claim</Button>{" "}
+            </Link>
           </div>
           <h3 className="font-semibold mb-3 md:mb-4">Recent Claims History</h3>{" "}
           <div className="overflow-x-auto w-full">
