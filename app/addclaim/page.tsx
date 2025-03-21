@@ -247,15 +247,15 @@ export default function AddInsuranceClaim() {
                   }
                 >
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="in-progress" id="in-progress" />
+                    <RadioGroupItem value="Pending" id="in-progress" />
                     <Label htmlFor="in-progress">In Progress</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="approved" id="approved" />
+                    <RadioGroupItem value="Approved" id="approved" />
                     <Label htmlFor="approved">Approved</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="denied" id="denied" />
+                    <RadioGroupItem value="Denied" id="denied" />
                     <Label htmlFor="denied">Denied</Label>
                   </div>
                 </RadioGroup>
@@ -300,20 +300,20 @@ export default function AddInsuranceClaim() {
                       <SelectItem value="hospitalization">
                         Hospitalization
                       </SelectItem>
-                      <SelectItem value="surgery">Emergency Care</SelectItem>
-                      <SelectItem value="prescription">
+                      <SelectItem value="Emergency Care">
+                        Emergency Care
+                      </SelectItem>
+                      <SelectItem value="Surgery">Surgery</SelectItem>
+                      <SelectItem value="Diagnostic Test">
                         Diagnostic Test
                       </SelectItem>
-                      <SelectItem value="emergency-room">
+                      <SelectItem value="Medication Reimbursement">
                         Medication Reimbursement
                       </SelectItem>
-                      <SelectItem value="physical-therapy">
-                        Dental Care
-                      </SelectItem>
-                      <SelectItem value="mental-health">
+                      <SelectItem value="Dental Care">Dental Care</SelectItem>
+                      <SelectItem value="Mental Health">
                         Mental Health
                       </SelectItem>
-                      <SelectItem value="surgery">Surgery</SelectItem>
                     </SelectContent>
                   </Select>
                 )}

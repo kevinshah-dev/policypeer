@@ -105,7 +105,7 @@ export function NavBar({
             </Link>
           ) : (
             <Link href="/account">
-              <Button>My Account</Button>
+              <Button className="font-sans">My Account</Button>
             </Link>
           )}
         </div>
@@ -124,7 +124,7 @@ export function NavBar({
             </>
           ) : (
             <Link href="/account">
-              <Button>My Account</Button>
+              <Button className="font-sans">My Account</Button>
             </Link>
           )}
         </div>

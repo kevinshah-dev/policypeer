@@ -64,11 +64,11 @@ export function CompanyOverview({ claims }: Props) {
                     <TableCell>
                       <span
                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                          claim.claimStatus === "approved"
+                          claim.claimStatus === "Approved"
                             ? "bg-green-100 text-green-800"
-                            : claim.claimStatus === "in-progress"
+                            : claim.claimStatus === "Pending"
                             ? "bg-yellow-100 text-yellow-800"
-                            : claim.claimStatus === "denied"
+                            : claim.claimStatus === "Denied"
                             ? "bg-red-100 text-red-800"
                             : ""
                         }`}

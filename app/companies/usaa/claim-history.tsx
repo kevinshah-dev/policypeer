@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation";
 import { Claim } from "@/types/claim";
 
 type Props = {
@@ -21,8 +21,8 @@ type Props = {
 export function ClaimHistory({ claims }: Props) {
   const router = useRouter();
 
-  const handleRowClick = () => {
-    router.push("/");
+  const handleRowClick = (id: number) => {
+    router.push(`/claims/${id}`);
   };
 
   return (
@@ -56,7 +56,7 @@ export function ClaimHistory({ claims }: Props) {
                   <TableRow
                     key={claim.claimDate}
                     className="cursor-pointer hover:bg-gray-100 transition-colors"
-                    onClick={() => handleRowClick()}
+                    onClick={() => handleRowClick(claim.id)}
                   >
                     {" "}
                     <TableCell className="text-sm">
@@ -69,9 +69,13 @@ export function ClaimHistory({ claims }: Props) {
                     <TableCell>
                       <span
                         className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                          claim.claimStatus === "approved"
+                          claim.claimStatus === "Approved"
                             ? "bg-green-100 text-green-800"
-                            : "bg-yellow-100 text-yellow-800"
+                            : claim.claimStatus === "Pending"
+                            ? "bg-yellow-100 text-yellow-800"
+                            : claim.claimStatus === "Denied"
+                            ? "bg-red-100 text-red-800"
+                            : ""
                         }`}
                       >
                         {claim.claimStatus}
