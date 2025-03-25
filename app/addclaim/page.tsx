@@ -145,19 +145,19 @@ export default function AddInsuranceClaim() {
               <div>
                 <h2 className="text-xl font-semibold mb-4">Insurance Type</h2>
                 <RadioGroup
-                  defaultValue="car"
+                  defaultValue="health"
                   className="flex gap-4"
                   onValueChange={(value) =>
                     handleSelectChange("insuranceType", value)
                   }
                 >
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="car" id="car" />
-                    <Label htmlFor="car">Car</Label>
-                  </div>
-                  <div className="flex items-center space-x-2">
                     <RadioGroupItem value="health" id="health" />
                     <Label htmlFor="health">Health</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="car" id="car" />
+                    <Label htmlFor="car">Car</Label>
                   </div>
                 </RadioGroup>
               </div>

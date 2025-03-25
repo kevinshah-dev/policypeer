@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { navLinks } from "@/lib/navigation";
 import { NavBar } from "@/components/navbar";
 
@@ -35,6 +36,7 @@ export default function CompaniesClient({
   const [searchTerm, setSearchTerm] = useState("");
   const [sortKey, setSortKey] = useState<keyof Company | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const router = useRouter();
 
   const getTagClasses = (type: string) => {
     const lowerType = type.toLowerCase();
@@ -126,7 +128,14 @@ export default function CompaniesClient({
               {sorted.map((company) => (
                 <TableRow
                   key={company.id}
-                  className="border-b last:border-none"
+                  className="border-b last:border-none cursor-pointer hover:bg-gray-100"
+                  onClick={() =>
+                    router.push(
+                      `/companies/${company.name
+                        .toLowerCase()
+                        .replace(/\s+/g, "-")}`
+                    )
+                  }
                 >
                   <TableCell className="px-4 py-2 font-medium">
                     {company.name}

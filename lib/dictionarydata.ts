@@ -59,4 +59,18 @@ export const DICTIONARY_DATA: DictionaryEntry[] = [
     category: "Health Insurance",
     slug: slugify("hmo"),
   },
+  {
+    term: "Medicare Advantage",
+    definition:
+      "A Medicare Advantage is a type of Medicare coverage that is provided by private insurance companies. These plans offer additional benefits and services beyond the standard Medicare coverage, such as prescription drug coverage, vision, and dental care. They are typically more expensive than traditional Medicare, but they provide more comprehensive coverage.",
+    category: "Health Insurance",
+    slug: slugify("medicare-advantage"),
+  },
+  {
+    term: "Supplemental Insurance",
+    definition:
+      "Supplemental insurance provides additional coverage to help pay for out-of-pocket expenses, such as deductibles and copayments, that your primary health plan might not fully cover. It acts as a financial safety net, ensuring you have extra protection for specific health events or conditions that could otherwise result in significant costs. ",
+    category: "Health Insurance",
+    slug: slugify("supplemental-insurance"),
+  },
 ];

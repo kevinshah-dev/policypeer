@@ -17,6 +17,24 @@ type Props = {
   claims: Claim[];
 };
 
+const products = [
+  { name: "Medicare Advantage Plans", link: "/dictionary/medicare-advantage" },
+  { name: "Vision Insurance", link: "/dictionary/vision-insurance" },
+  {
+    name: "Dental Insurance",
+    link: "/dictionary/dental-insurance",
+  },
+  {
+    name: "Special Needs Plans (SNPs)",
+    link: "/dictionary/special-needs-plans",
+  },
+  {
+    name: "Supplemental Insurance (Accident, Critical Illness, Hospital Recovery)",
+    link: "/dictionary/supplemental-insurance",
+  },
+  { name: "Small Business Plans", link: "/dictionary/small-business-plans" },
+];
+
 export function CompanyOverview({ claims }: Props) {
   console.log("united healthcare claims data", claims);
   return (
@@ -163,20 +181,12 @@ export function CompanyOverview({ claims }: Props) {
           Available Products
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-          {[
-            "Medicare Advantage Plans",
-            "Vision Insurance",
-            "Dental Insurance (Preventive Care Coverage)",
-            "Special Needs Plans (SNPs)",
-            "Supplemental Insurance (Accident, Critical Illness, Hospital Recovery)",
-            "Small Business Plans",
-          ].map((product) => (
-            <div
-              key={product}
-              className="flex items-center p-2 md:p-3 rounded-lg border bg-gray-50"
-            >
-              <span className="text-sm font-medium">{product}</span>
-            </div>
+          {products.map((product) => (
+            <Link key={product.name} href={product.link}>
+              <div className="flex items-center p-2 md:p-3 rounded-lg border bg-gray-50 hover:bg-gray-100 transition-colors">
+                <span className="text-sm font-medium">{product.name}</span>
+              </div>
+            </Link>
           ))}
         </div>
       </Card>

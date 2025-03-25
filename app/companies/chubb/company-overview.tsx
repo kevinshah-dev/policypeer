@@ -17,6 +17,24 @@ type Props = {
   claims: Claim[];
 };
 
+const products = [
+  { name: "Medicare Advantage Plans", link: "/dictionary/medicare-advantage" },
+  { name: "Vision Insurance", link: "/dictionary/vision-insurance" },
+  {
+    name: "Dental Insurance",
+    link: "/dictionary/dental-insurance",
+  },
+  {
+    name: "Special Needs Plans (SNPs)",
+    link: "/dictionary/special-needs-plans",
+  },
+  {
+    name: "Supplemental Insurance (Accident, Critical Illness, Hospital Recovery)",
+    link: "/dictionary/supplemental-insurance",
+  },
+  { name: "Small Business Plans", link: "/dictionary/small-business-plans" },
+];
+
 export function CompanyOverview({ claims }: Props) {
   return (
     <div className="space-y-6 p-4 md:p-0 flex-grow">
