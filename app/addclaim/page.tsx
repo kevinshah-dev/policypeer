@@ -300,6 +300,9 @@ export default function AddInsuranceClaim() {
                       <SelectItem value="hospitalization">
                         Hospitalization
                       </SelectItem>
+                      <SelectItem value="General Visit">
+                        General Visit
+                      </SelectItem>
                       <SelectItem value="Emergency Care">
                         Emergency Care
                       </SelectItem>

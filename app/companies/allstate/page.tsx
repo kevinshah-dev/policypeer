@@ -107,7 +107,7 @@ export default async function CompanyProfile() {
               </TabsList>
               <div className="mt-6">
                 <TabsContent value="overview">
-                  <CompanyOverview claims={formattedClaims ?? []} />
+                  <CompanyOverview claims={formattedClaims.slice(0, 5) ?? []} />
                 </TabsContent>
                 <TabsContent value="reviews">
                   <CompanyReviews />
