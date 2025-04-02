@@ -2,17 +2,14 @@ import Link from "next/link";
 import { NavBar } from "@/components/navbar";
 import Footer from "@/components/footer";
 import { montserrat } from "@/lib/fonts/fonts";
+import { navLinks } from "@/lib/navigation";
 
 export default function PrivacyPolicyPage() {
   return (
     <div className={`min-h-screen bg-gray-50 ${montserrat.className}`}>
       <NavBar
         logoText="PolicyPeer"
-        navLinks={[
-          { label: "Companies", href: "/companies" },
-          { label: "Privacy", href: "/privacy" },
-          { label: "Dictionary", href: "/dictionary" },
-        ]}
+        navLinks={navLinks}
         signInHref="/login"
       />
 

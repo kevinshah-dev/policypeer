@@ -51,7 +51,7 @@ export default function AddInsuranceClaim() {
 
   // State for claim data
   const [formData, setFormData] = useState({
-    insuranceType: "car",
+    insuranceType: "health",
     claimDate: "",
     claimAmount: "",
     claimDescription: "",
