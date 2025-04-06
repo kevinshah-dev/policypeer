@@ -52,43 +52,41 @@ export function PolicyInformation() {
 
   return (
     <div className="space-y-6">
-      <Card className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">Policies</h2>
-          <Link href="/addhealthpolicy">
-            <Button className="text-xs md:text-sm">Add Policy</Button>
-          </Link>
-        </div>
+      <div className="max-w-full">
+        <Card className="p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold">Policies</h2>
+            <Link href="/addhealthpolicy">
+              <Button className="text-xs md:text-sm">Add Policy</Button>
+            </Link>
+          </div>
 
-        <div className="overflow-x-auto w-full">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Created</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Premium</TableHead>
-                <TableHead>Deductible</TableHead>
-                <TableHead>Coverage Limit</TableHead>
-                <TableHead>Submission</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {policies.map((policy) => (
-                <TableRow key={policy.id}>
-                  <TableCell>
-                    {new Date(policy.created_at).toLocaleDateString()}
-                  </TableCell>
-                  <TableCell>{policy.coverageType}</TableCell>
-                  <TableCell>{formatCurrency(policy.premium)}</TableCell>
-                  <TableCell>{formatCurrency(policy.deductible)}</TableCell>
-                  <TableCell>{formatCurrency(policy.coverageLimit)}</TableCell>
-                  <TableCell>{policy.submissionType}</TableCell>
+          <div className="overflow-x-auto w-full">
+            <Table className="w-full">
+              <TableHeader>
+                <TableRow>
+                  <TableHead className="text-sm">Type</TableHead>
+                  <TableHead className="text-sm">Premium</TableHead>
+                  <TableHead className="text-sm">Deductible</TableHead>
+                  <TableHead className="text-sm">Coverage Limit</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      </Card>
+              </TableHeader>
+              <TableBody>
+                {policies.map((policy) => (
+                  <TableRow key={policy.id}>
+                    <TableCell>{policy.coverageType}</TableCell>
+                    <TableCell>{formatCurrency(policy.premium)}</TableCell>
+                    <TableCell>{formatCurrency(policy.deductible)}</TableCell>
+                    <TableCell>
+                      {formatCurrency(policy.coverageLimit)}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 }

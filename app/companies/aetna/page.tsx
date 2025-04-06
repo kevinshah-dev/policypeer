@@ -92,21 +92,33 @@ export default async function CompanyProfile() {
         <div className="grid md:grid-cols-3 gap-6">
           <div className="md:col-span-2">
             <Tabs defaultValue="overview">
-              <TabsList className="justify-start h-auto flex-wrap">
-                <TabsTrigger value="overview" className="text-sm">
+              <TabsList className="flex flex-wrap gap-2 bg-transparent">
+                <TabsTrigger
+                  value="overview"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 data-[state=active]:border-b-2 data-[state=active]:border-red-600"
+                >
                   Overview
                 </TabsTrigger>
-                <TabsTrigger value="reviews" className="text-sm">
+                <TabsTrigger
+                  value="reviews"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 data-[state=active]:border-b-2 data-[state=active]:border-red-600"
+                >
                   Reviews
                 </TabsTrigger>
-                <TabsTrigger value="claims" className="text-sm">
+                <TabsTrigger
+                  value="claims"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 data-[state=active]:border-b-2 data-[state=active]:border-red-600"
+                >
                   Claim History
                 </TabsTrigger>
-                <TabsTrigger value="policies" className="text-sm">
+                <TabsTrigger
+                  value="policies"
+                  className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-gray-800 data-[state=active]:border-b-2 data-[state=active]:border-red-600"
+                >
                   Policies
                 </TabsTrigger>
               </TabsList>
-              <div className="mt-6">
+              <div className="mt-10">
                 <TabsContent value="overview">
                   <CompanyOverview claims={formattedClaims.slice(0, 5) ?? []} />
                 </TabsContent>

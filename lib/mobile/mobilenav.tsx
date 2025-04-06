@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { FaTiktok } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { poppins } from "@/lib/fonts/fonts";
 
 interface MobileNavProps {
   setMobileMenuOpen: (open: boolean) => void;
@@ -29,7 +30,13 @@ export default function MobileNav({ setMobileMenuOpen }: MobileNavProps) {
       <div className="relative bg-white p-4 w-80 max-w-full h-full flex flex-col justify-between">
         <div>
           <div className="mb-4">
-            <Link href="/" className="text-xl font-bold text-red-600">
+            <Link
+              href="/"
+              className={`
+                        text-xl font-bold text-red-600
+                        ${poppins.className}  
+                      `}
+            >
               PolicyPeer
             </Link>
           </div>
@@ -43,6 +50,13 @@ export default function MobileNav({ setMobileMenuOpen }: MobileNavProps) {
             </Link>
             <Link href="/dictionary" className="block" onClick={handleClose}>
               Dictionary
+            </Link>
+            <Link
+              href="/premiumcalculator"
+              className="block"
+              onClick={handleClose}
+            >
+              Premium Calculator
             </Link>
           </div>
         </div>

@@ -64,25 +64,19 @@ export function PolicyInformation() {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Created</TableHead>
                 <TableHead>Type</TableHead>
                 <TableHead>Premium</TableHead>
                 <TableHead>Deductible</TableHead>
                 <TableHead>Coverage Limit</TableHead>
-                <TableHead>Submission</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {policies.map((policy) => (
                 <TableRow key={policy.id}>
-                  <TableCell>
-                    {new Date(policy.created_at).toLocaleDateString()}
-                  </TableCell>
                   <TableCell>{policy.coverageType}</TableCell>
                   <TableCell>{formatCurrency(policy.premium)}</TableCell>
                   <TableCell>{formatCurrency(policy.deductible)}</TableCell>
                   <TableCell>{formatCurrency(policy.coverageLimit)}</TableCell>
-                  <TableCell>{policy.submissionType}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

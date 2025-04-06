@@ -16,6 +16,8 @@ import {
 import { montserrat } from "@/lib/fonts/fonts";
 import Link from "next/link";
 import Footer from "@/components/footer";
+import { NavBar } from "@/components/navbar";
+import { navLinks } from "@/lib/navigation";
 
 type Claim = {
   id: number;
@@ -136,17 +138,8 @@ export default function MyAccountPage() {
   }
 
   return (
-    <div className={`min-h-screen bg-gray-50 ${montserrat.className}`}>
-      <div className="border-b bg-white">
-        <div className="container mx-auto px-4 py-6 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">My Account</h1>
-
-          <Button variant="outline" onClick={() => router.push("/")}>
-            Home
-          </Button>
-        </div>
-      </div>
-
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
       <main className="container mx-auto px-4 py-8 space-y-6">
         <div className="space-y-2">
           <h2 className="text-xl font-semibold">

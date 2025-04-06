@@ -50,7 +50,6 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Single statistic: Claims Approval Rate */}
           <div className="p-3 mb-4 md:mb-6 rounded-lg bg-gray-50 border">
             <div className="text-sm text-muted-foreground">
               Claims Approval Rate

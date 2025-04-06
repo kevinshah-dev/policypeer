@@ -95,6 +95,7 @@ export default function Home() {
   const allCompanies = [
     ...insuranceProviders.car,
     ...insuranceProviders.health,
+    ...insuranceProviders.home,
   ].map((company) => ({
     ...company,
     slug: slugify(company.name),
@@ -140,17 +141,19 @@ export default function Home() {
       <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
 
       <main className="container mx-auto px-4 py-12">
-        <div className="text-center mb-12">
-          <h1 className={`text-4xl font-bold mb-4 ${montserrat.className}`}>
-            Protect Yourself From Insurance Companies
+        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+          <h1
+            className={`text-4xl font-bold mb-4 text-center ${montserrat.className}`}
+          >
+            Take Control of Your Insurance
           </h1>
-          <p className="text-lg text-muted-foreground mb-8">
-            Compare actual insurance policies and prices from users nationwide
+          <p className="text-lg text-muted-foreground mb-8 text-center">
+            Compare real prices & policies from actual users
           </p>
           <div ref={searchRef} className="max-w-2xl mx-auto relative">
             <Search className="absolute left-3 top-3 h-5 w-5 text-muted-foreground" />
             <Input
-              placeholder="Search by Company"
+              placeholder="e.g. UnitedHealthcare, Cigna, State Farm"
               className="pl-10 h-12"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -176,30 +179,27 @@ export default function Home() {
               </Card>
             )}
           </div>
-          <div className="mt-4 flex justify-center gap-4">
-            <Link href="/addpolicytype">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
+            <Link href="/addpolicytype" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className={
-                  "bg-red-600 hover:bg-red-500 font-bold " +
-                  montserrat.className
-                }
+                className={`w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 font-bold text-lg py-3 px-6 ${montserrat.className}`}
               >
                 Add Your Policy
               </Button>
             </Link>
-            <Link href="/addclaim">
+            <Link href="/addclaim" className="w-full sm:w-auto">
               <Button
                 size="lg"
-                className={
-                  "bg-red-600 hover:bg-red-500 font-bold " +
-                  montserrat.className
-                }
+                className={`w-full sm:w-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 font-bold text-lg py-3 px-6 ${montserrat.className}`}
               >
                 Add Your Claim
               </Button>
             </Link>
           </div>
+          <p className="text-center mt-4 text-gray-600 text-sm italic">
+            Help others by sharing your experience
+          </p>
         </div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
