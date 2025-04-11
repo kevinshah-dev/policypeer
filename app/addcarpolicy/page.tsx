@@ -136,22 +136,6 @@ export default function AddCarPolicy() {
 
         <Card>
           <CardContent className="pt-6">
-            <div className="mb-8">
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-lg font-semibold">
-                  Enhance Privacy and Anonymity
-                </h2>
-                <Switch />
-              </div>
-              <p className="text-sm text-muted-foreground">
-                Automatically hides specific fields until there are enough
-                submissions to safely display the full details.{" "}
-                <Link href="#" className="text-blue-600 hover:underline">
-                  More Details
-                </Link>
-              </p>
-            </div>
-
             <div className="space-y-6">
               <div>
                 <h2 className="text-xl font-semibold mb-4">

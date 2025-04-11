@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { CompanyOverview } from "./company-overview";
 import { CompanyReviews } from "./company-reviews";
-import { ClaimHistory } from "./claim-history";
+import { ClaimHistoryMain } from "@/components/claimhistory";
 import { PolicyInformation } from "./policy-information";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
@@ -126,7 +126,7 @@ export default async function CompanyProfile() {
                   <CompanyReviews />
                 </TabsContent>
                 <TabsContent value="claims">
-                  <ClaimHistory claims={formattedClaims ?? []} />
+                  <ClaimHistoryMain claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="policies">
                   <PolicyInformation />
