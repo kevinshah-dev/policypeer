@@ -28,6 +28,7 @@ import {
 import { Upload } from "lucide-react";
 import { CompanySelect } from "@/components/selectcomponents/companyselect";
 import { Checkbox } from "@/components/ui/checkbox";
+import Footer from "@/components/footer";
 
 type ClaimInsert = {
   insuranceType: string;
@@ -344,6 +345,7 @@ export default function AddInsuranceClaim() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </>
   );
 }

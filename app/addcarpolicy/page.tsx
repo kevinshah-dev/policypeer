@@ -27,6 +27,7 @@ import {
 } from "@/components/ui/dialog";
 import { CompanySelect } from "@/components/selectcomponents/companyselect";
 import { VehicleSelect } from "@/components/selectcomponents/vehicleselect";
+import Footer from "@/components/footer";
 
 export default function AddCarPolicy() {
   const router = useRouter();
@@ -299,6 +300,7 @@ export default function AddCarPolicy() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </>
   );
 }

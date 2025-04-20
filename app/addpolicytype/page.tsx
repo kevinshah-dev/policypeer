@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Car, HeartPulse } from "lucide-react";
+import { Car, HeartPulse, House } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { montserrat } from "@/lib/fonts/fonts";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
+import Footer from "@/components/footer";
 
 export default function AddPolicyType() {
   const router = useRouter();
@@ -50,6 +51,19 @@ export default function AddPolicyType() {
               </Button>
             </Link>
           </div>
+          <div className="border rounded-lg bg-white p-6 shadow-sm flex flex-col items-center text-center">
+            <House className="h-16 w-16 text-red-600 mb-4" />
+            <h2 className="text-xl font-semibold mb-2">Home Insurance</h2>
+            <p className="text-sm text-muted-foreground mb-4">
+              Share your home insurance details, including coverage types,
+              premiums, and claim experiences.
+            </p>
+            <Link href="/addhomepolicy">
+              <Button className="bg-red-600 hover:bg-red-500 font-bold">
+                Continue
+              </Button>
+            </Link>
+          </div>
         </div>
         <div className="text-center mt-16">
           <Button
@@ -60,6 +74,7 @@ export default function AddPolicyType() {
           </Button>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

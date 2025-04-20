@@ -22,6 +22,7 @@ import {
 import { Upload } from "lucide-react";
 import { CompanySelect } from "@/components/selectcomponents/companyselect";
 import { Checkbox } from "@/components/ui/checkbox";
+import Footer from "@/components/footer";
 
 type ReviewInsert = {
   company: string;
@@ -37,12 +38,11 @@ export default function AddReview() {
   const searchParams = useSearchParams();
   const [isCertified, setIsCertified] = useState(false);
 
-  // If your review requires a logged-in user, you can store session
   const [session, setSession] = useState<any>(null);
 
   const [formData, setFormData] = useState<ReviewInsert>({
     company: "",
-    rating: 5, // default rating
+    rating: 5,
     title: "",
     content: "",
     user_id: null,
@@ -91,7 +91,6 @@ export default function AddReview() {
     }));
   };
 
-  // 3. onSubmit => supabase insert
   const handleSubmit = async () => {
     if (!isCertified) {
       alert("Please certify that the information is accurate.");
@@ -122,7 +121,6 @@ export default function AddReview() {
 
   return (
     <>
-      {/* SUCCESS DIALOG */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
@@ -134,7 +132,6 @@ export default function AddReview() {
         </DialogContent>
       </Dialog>
 
-      {/* MAIN CONTENT */}
       <div className="container max-w-2xl mx-auto py-12 px-4">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">Add Your Insurance Review</h1>
@@ -143,7 +140,6 @@ export default function AddReview() {
         <Card>
           <CardContent className="pt-6">
             <div className="space-y-6">
-              {/* COMPANY */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">Company</h2>
                 <CompanySelect
@@ -152,7 +148,6 @@ export default function AddReview() {
                 />
               </div>
 
-              {/* RATING */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">Rating</h2>
                 <RadioGroup
@@ -174,7 +169,6 @@ export default function AddReview() {
                 </RadioGroup>
               </div>
 
-              {/* REVIEW TITLE */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">Review Title</h2>
                 <Input
@@ -184,7 +178,6 @@ export default function AddReview() {
                 />
               </div>
 
-              {/* REVIEW CONTENT */}
               <div>
                 <h2 className="text-xl font-semibold mb-4">Review Content</h2>
                 <Textarea
@@ -196,7 +189,6 @@ export default function AddReview() {
               </div>
             </div>
 
-            {/* CERTIFICATION CHECKBOX */}
             <div className="mt-8 flex items-center space-x-2">
               <Checkbox
                 id="certify"
@@ -208,7 +200,6 @@ export default function AddReview() {
               </Label>
             </div>
 
-            {/* SUBMIT BUTTON */}
             <Button
               className="w-full mt-8 bg-red-600 hover:bg-red-500"
               onClick={handleSubmit}
@@ -219,6 +210,7 @@ export default function AddReview() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </>
   );
 }

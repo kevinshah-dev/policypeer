@@ -26,6 +26,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { CompanySelect } from "@/components/selectcomponents/companyselect";
+import Footer from "@/components/footer";
 
 export default function AddHealthPolicy() {
   const router = useRouter();
@@ -206,6 +207,7 @@ export default function AddHealthPolicy() {
           </CardContent>
         </Card>
       </div>
+      <Footer />
     </>
   );
 }

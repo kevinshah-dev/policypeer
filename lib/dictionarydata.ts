@@ -73,4 +73,18 @@ export const DICTIONARY_DATA: DictionaryEntry[] = [
     category: "Health Insurance",
     slug: slugify("supplemental-insurance"),
   },
+  {
+    term: "National Average Drug Acquisition Cost (NADAC)",
+    definition:
+      "The National Average Drug Acquisition Cost (NADAC) is a pricing benchmark used by the Centers for Medicare & Medicaid Services (CMS) to determine the average cost that pharmacies pay for prescription drugs. It is based on actual acquisition costs reported by pharmacies and is used to set reimbursement rates for Medicaid and other government programs.",
+    category: "Health Insurance",
+    slug: slugify("nadac"),
+  },
+  {
+    term: "Pharmacy Benefit Manager (PBM)",
+    definition:
+      "A Pharmacy Benefit Manager (PBM) is a third-party administrator of prescription drug programs for health plans, employers, and government programs. PBMs negotiate with drug manufacturers and pharmacies to manage drug benefits, control costs, and improve access to medications. They play a crucial role in determining which drugs are covered, the pricing of those drugs, and the reimbursement rates for pharmacies.",
+    category: "Health Insurance",
+    slug: slugify("pbm"),
+  },
 ];
