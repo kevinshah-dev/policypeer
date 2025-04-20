@@ -28,22 +28,11 @@ type Policy = {
   created_at: string;
 };
 
-export function PolicyInformation() {
-  const [policies, setPolicies] = useState<Policy[]>([]);
+type PolicyInformationProps = {
+  policies: Policy[];
+};
 
-  useEffect(() => {
-    const fetchPolicies = async () => {
-      const { data, error } = await supabase
-        .from("policies")
-        .select("*")
-        .eq("company", "aetna")
-        .order("created_at", { ascending: false });
-
-      if (!error && data) setPolicies(data);
-    };
-    fetchPolicies();
-  }, []);
-
+export function PolicyInformationMain({ policies }: PolicyInformationProps) {
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",

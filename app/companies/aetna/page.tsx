@@ -13,12 +13,13 @@ import {
 } from "lucide-react";
 import { CompanyOverview } from "./company-overview";
 import { CompanyReviews } from "./company-reviews";
-import { PolicyInformation } from "./policy-information";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
 import { Claim } from "@/types/claim";
 import { ClaimHistoryMain } from "@/components/claimhistory";
+import { PolicyInformationMain } from "@/components/policyinfo";
+import Footer from "@/components/footer";
 
 // KEY = "aetna"
 
@@ -38,6 +39,12 @@ export default async function CompanyProfile() {
       maximumFractionDigits: 0,
     }).format(Number(claim.claimAmount)),
   }));
+
+  const { data: policiesData, error: policiesError } = await supabase
+    .from("policies")
+    .select("*")
+    .eq("company", "aetna")
+    .order("created_at", { ascending: false });
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
@@ -129,7 +136,7 @@ export default async function CompanyProfile() {
                   <ClaimHistoryMain claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="policies">
-                  <PolicyInformation />
+                  <PolicyInformationMain policies={policiesData ?? []} />
                 </TabsContent>
               </div>
             </Tabs>
@@ -214,6 +221,7 @@ export default async function CompanyProfile() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

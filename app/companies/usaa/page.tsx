@@ -14,11 +14,12 @@ import {
 import { CompanyOverview } from "./company-overview";
 import { CompanyReviews } from "./company-reviews";
 import { ClaimHistoryMain } from "@/components/claimhistory";
-import { PolicyInformation } from "./policy-information";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
 import { Claim } from "@/types/claim";
+import { PolicyInformationMain } from "@/components/policyinfo";
+import Footer from "@/components/footer";
 
 //KEY = "usaa"
 
@@ -36,6 +37,12 @@ export default async function CompanyProfile() {
       maximumFractionDigits: 0,
     }).format(Number(claim.claimAmount)),
   }));
+
+  const { data: policiesData, error: policiesError } = await supabase
+    .from("policies")
+    .select("*")
+    .eq("company", "usaa")
+    .order("created_at", { ascending: false });
 
   console.log("pre formattedClaims", data);
   console.log("Claims Data:", formattedClaims);
@@ -129,7 +136,7 @@ export default async function CompanyProfile() {
                   <ClaimHistoryMain claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="policies">
-                  <PolicyInformation />
+                  <PolicyInformationMain policies={policiesData ?? []} />
                 </TabsContent>
               </div>
             </Tabs>
@@ -214,6 +221,7 @@ export default async function CompanyProfile() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
