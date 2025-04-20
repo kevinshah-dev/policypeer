@@ -87,4 +87,25 @@ export const DICTIONARY_DATA: DictionaryEntry[] = [
     category: "Health Insurance",
     slug: slugify("pbm"),
   },
+  {
+    term: "Vision Insurance",
+    definition:
+      "Vision insurance is a type of health insurance that provides coverage for eye care services, including routine eye exams, glasses, and contact lenses. It helps offset the costs associated with maintaining good eye health and vision correction.",
+    category: "Health Insurance",
+    slug: slugify("vision-insurance"),
+  },
+  {
+    term: "Special Needs Plans (SNPs)",
+    definition:
+      "Special Needs Plans (SNPs) are a type of Medicare Advantage plan designed specifically for individuals with certain chronic conditions, disabilities, or those who are dually eligible for Medicare and Medicaid. SNPs provide tailored healthcare services and support to meet the unique needs of these populations.",
+    category: "Health Insurance",
+    slug: slugify("snp"),
+  },
+  {
+    term: "Small Business Plans",
+    definition:
+      "Small Business Plans are insurance policies designed to provide coverage for small businesses, including health insurance for employees, liability coverage, and property insurance. These plans help protect the business and its employees from financial losses due to unforeseen events.",
+    category: "General",
+    slug: slugify("smallbusinessplans"),
+  },
 ];

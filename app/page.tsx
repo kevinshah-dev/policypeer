@@ -203,7 +203,7 @@ export default function Home() {
         </div>
         <div className="flex items-center justify-between mb-4">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-0">
-            <h2 className="text-2xl font-bold">Trending</h2>
+            <h2 className="text-2xl font-bold sm:mr-2">Trending</h2>
             <Select
               value={selectedInsurance}
               onValueChange={(value) =>
@@ -219,7 +219,7 @@ export default function Home() {
                 <SelectItem value="home">Home Insurance</SelectItem>
               </SelectContent>
             </Select>
-            <h2 className="text-2xl font-bold">Providers</h2>
+            <h2 className="text-2xl font-bold sm:ml-2"> Providers</h2>
           </div>
           <Link href="/companies">
             <Button variant="link">View All</Button>
