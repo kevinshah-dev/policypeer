@@ -29,8 +29,6 @@ export default async function CompanyProfile() {
     .select("*")
     .eq("company", "farmers");
 
-  console.log("Claims Data:", data);
-
   const formattedClaims = (data ?? []).map((claim: Claim) => ({
     ...claim,
     claimAmount: new Intl.NumberFormat("en-US", {
@@ -46,7 +44,6 @@ export default async function CompanyProfile() {
     .eq("company", "farmers")
     .order("created_at", { ascending: false });
 
-  console.log("Claims Data:", data);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />

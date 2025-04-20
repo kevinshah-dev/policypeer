@@ -50,12 +50,11 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Single statistic: Claims Approval Rate */}
           <div className="p-3 mb-4 md:mb-6 rounded-lg bg-gray-50 border">
             <div className="text-sm text-muted-foreground">
               Claims Approval Rate
             </div>
-            <div className="text-2xl font-bold mt-1">94.3%</div>
+            <div className="text-2xl font-bold mt-1">78.5%</div>
           </div>
 
           <h3 className="font-semibold mb-3 md:mb-4">Recent Claims</h3>
@@ -101,7 +100,6 @@ export function CompanyOverview({ claims }: Props) {
           </div>
         </Card>
 
-        {/* RATING BREAKDOWN CARD */}
         <Card className="p-4 md:p-6">
           <h2 className="text-xl font-semibold mb-4 md:mb-6">
             Rating Breakdown
@@ -148,7 +146,6 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Customer Service */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <PhoneCall className="h-5 w-5 text-green-600" />

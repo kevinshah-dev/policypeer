@@ -39,7 +39,6 @@ export function CompanyOverview({ claims }: Props) {
   return (
     <div className="space-y-6 p-4 md:p-0 flex-grow">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        {/* CLAIMS TABLE CARD */}
         <Card className="p-4 md:p-6">
           <div className="flex items-center justify-between mb-3 md:mb-4">
             <h2 className="text-xl font-semibold">Claims History</h2>
@@ -50,7 +49,6 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Single statistic: Claims Approval Rate */}
           <div className="p-3 mb-4 md:mb-6 rounded-lg bg-gray-50 border">
             <div className="text-sm text-muted-foreground">
               Claims Approval Rate
@@ -101,7 +99,6 @@ export function CompanyOverview({ claims }: Props) {
           </div>
         </Card>
 
-        {/* RATING BREAKDOWN CARD */}
         <Card className="p-4 md:p-6">
           <h2 className="text-xl font-semibold mb-4 md:mb-6">
             Rating Breakdown
@@ -132,7 +129,6 @@ export function CompanyOverview({ claims }: Props) {
       <Card className="p-4 md:p-6 space-y-4">
         <h2 className="text-xl font-bold">Quick Links</h2>
         <div className="space-y-3">
-          {/* Official Website */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <Globe2 className="h-5 w-5 text-blue-600" />
@@ -148,7 +144,6 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Customer Service */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <PhoneCall className="h-5 w-5 text-green-600" />

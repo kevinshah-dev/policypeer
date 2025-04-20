@@ -55,7 +55,7 @@ export function CompanyOverview({ claims }: Props) {
             <div className="text-sm text-muted-foreground">
               Claims Approval Rate
             </div>
-            <div className="text-2xl font-bold mt-1">94.3%</div>
+            <div className="text-2xl font-bold mt-1">84.7%</div>
           </div>
 
           <h3 className="font-semibold mb-3 md:mb-4">Recent Claims</h3>
