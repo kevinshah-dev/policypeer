@@ -117,7 +117,6 @@ export default function MyAccountPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      console.log("handle submit hitting");
       const { error } = await supabase.from("userdemo").insert([
         {
           ...formData,
