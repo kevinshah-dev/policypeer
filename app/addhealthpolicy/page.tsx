@@ -27,10 +27,12 @@ import {
 } from "@/components/ui/dialog";
 import { CompanySelect } from "@/components/selectcomponents/companyselect";
 import Footer from "@/components/footer";
+import { Checkbox } from "@/components/ui/checkbox";
 
 export default function AddHealthPolicy() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+  const [isCertified, setIsCertified] = useState(false);
 
   const [formData, setFormData] = useState({
     company: "",
@@ -40,6 +42,9 @@ export default function AddHealthPolicy() {
     coverageLimit: "",
     planDetails: "",
     submissionType: "new",
+    coinsurance: "",
+    tier: "",
+    networkType: "",
   });
 
   const handleCompanyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -76,7 +81,7 @@ export default function AddHealthPolicy() {
 
   const handleSubmit = async () => {
     try {
-      const { error } = await supabase.from("policies").insert(formData);
+      const { error } = await supabase.from("healthpolicies").insert(formData);
 
       if (error) throw error;
 
@@ -105,7 +110,9 @@ export default function AddHealthPolicy() {
 
       <div className="container max-w-2xl mx-auto py-12 px-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Add Your Insurance Policy</h1>
+          <h1 className="text-3xl font-bold mb-2">
+            Add Your Health Insurance Policy
+          </h1>
           <div className="flex items-center justify-center gap-2">
             <Upload className="h-4 w-4" />
             <Link href="#" className="text-blue-600 hover:underline">
@@ -142,6 +149,52 @@ export default function AddHealthPolicy() {
                   </div>
                 </div>
               </div>
+              <div>
+                <h2 className="text-xl font-semibold mb-4">Network & Tier</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label>Tier</Label>
+                    <Select
+                      onValueChange={(v) =>
+                        setFormData((f) => ({ ...f, metalTier: v }))
+                      }
+                      defaultValue={formData.tier}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select tier" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {["bronze", "silver", "gold", "platinum"].map((t) => (
+                          <SelectItem key={t} value={t}>
+                            {t.charAt(0).toUpperCase() + t.slice(1)}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div>
+                    <Label>Network Type</Label>
+                    <Select
+                      onValueChange={(v) =>
+                        setFormData((f) => ({ ...f, networkType: v }))
+                      }
+                      defaultValue={formData.networkType}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select network" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {["HMO", "PPO", "EPO", "POS"].map((nt) => (
+                          <SelectItem key={nt} value={nt}>
+                            {nt}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
 
               <div>
                 <h2 className="text-xl font-semibold mb-4">Coverage Details</h2>
@@ -156,6 +209,18 @@ export default function AddHealthPolicy() {
                     />
                   </div>
                   <div>
+                    <Label htmlFor="oopMax">Out‑of‑Pocket Max</Label>
+                    <Input
+                      id="oopMax"
+                      type="number"
+                      placeholder="$7,900"
+                      onChange={(e) =>
+                        setFormData((f) => ({ ...f, oopMax: e.target.value }))
+                      }
+                    />
+                  </div>
+
+                  <div>
                     <Label htmlFor="coverage-limit">Coverage Limit</Label>
                     <Input
                       id="coverage-limit"
@@ -164,6 +229,21 @@ export default function AddHealthPolicy() {
                       onChange={handleCoverageLimitChange}
                     />
                   </div>
+                </div>
+                <div>
+                  <Label htmlFor="coinsurance">Coinsurance %</Label>
+                  <Input
+                    id="coinsurance"
+                    type="number"
+                    step="0.1"
+                    placeholder="20"
+                    onChange={(e) =>
+                      setFormData((f) => ({
+                        ...f,
+                        coinsurance: e.target.value,
+                      }))
+                    }
+                  />
                 </div>
               </div>
 
@@ -181,27 +261,24 @@ export default function AddHealthPolicy() {
                       onChange={handlePlanDetailsChange}
                     />
                   </div>
-                  <div>
-                    <Label className="mb-2 block">Submission Type</Label>
-                    <RadioGroup
-                      defaultValue="new"
-                      className="flex gap-4"
-                      onValueChange={handleSubmissionTypeChange}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="new" id="new" />
-                        <Label htmlFor="new">New Policy</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="existing" id="existing" />
-                        <Label htmlFor="existing">Existing Policy</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
                 </div>
               </div>
             </div>
-            <Button className="w-full mt-8" onClick={handleSubmit}>
+            <div className="mt-8 flex items-center space-x-2">
+              <Checkbox
+                id="certify"
+                checked={isCertified}
+                onCheckedChange={(checked) => setIsCertified(!!checked)}
+              />
+              <Label htmlFor="certify">
+                I certify that the information provided is accurate and true.
+              </Label>
+            </div>
+            <Button
+              className="w-full mt-8"
+              onClick={handleSubmit}
+              disabled={!isCertified}
+            >
               Submit Insurance Information
             </Button>
           </CardContent>

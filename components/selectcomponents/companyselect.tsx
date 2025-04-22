@@ -42,6 +42,7 @@ const COMPANY_OPTIONS: CompanyOption[] = [
   { label: "American Family", value: "american-family" },
   { label: "Chubb", value: "chubb" },
   { label: "The Hartford", value: "the-hartford" },
+  { label: "Oscar Health", value: "oscar-health" },
 ];
 
 interface CompanySelectProps {
