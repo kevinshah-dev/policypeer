@@ -30,14 +30,20 @@ type Policy = {
 
 type PolicyInformationProps = {
   policies: Policy[];
+  type: string;
 };
 
-export function PolicyInformationMain({ policies }: PolicyInformationProps) {
+export function PolicyInformationMain({
+  policies,
+  type,
+}: PolicyInformationProps) {
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
     }).format(value);
+
+  const addPolicyHref = `/add${type}policy`;
 
   return (
     <div className="space-y-6">
@@ -45,7 +51,7 @@ export function PolicyInformationMain({ policies }: PolicyInformationProps) {
         <Card className="p-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-semibold">Policies</h2>
-            <Link href="/addhealthpolicy">
+            <Link href={addPolicyHref}>
               <Button className="text-xs md:text-sm">Add Policy</Button>
             </Link>
           </div>

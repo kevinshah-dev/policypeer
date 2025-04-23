@@ -137,7 +137,10 @@ export default async function CompanyProfile() {
                   <ClaimHistoryMain claims={formattedClaims ?? []} />
                 </TabsContent>
                 <TabsContent value="policies">
-                  <PolicyInformationMain policies={policiesData ?? []} />
+                  <PolicyInformationMain
+                    policies={policiesData ?? []}
+                    type="health"
+                  />
                 </TabsContent>
               </div>
             </Tabs>
