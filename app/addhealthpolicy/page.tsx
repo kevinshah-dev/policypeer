@@ -156,7 +156,7 @@ export default function AddHealthPolicy() {
                     <Label>Tier</Label>
                     <Select
                       onValueChange={(v) =>
-                        setFormData((f) => ({ ...f, metalTier: v }))
+                        setFormData((f) => ({ ...f, tier: v }))
                       }
                       defaultValue={formData.tier}
                     >
