@@ -53,7 +53,7 @@ export function CompanyOverview({ claims }: Props) {
             <div className="text-sm text-muted-foreground">
               Claims Approval Rate
             </div>
-            <div className="text-2xl font-bold mt-1">91.3%</div>
+            <div className="text-2xl font-bold mt-1">93%</div>
           </div>
 
           <h3 className="font-semibold mb-3 md:mb-4">Recent Claims</h3>
@@ -134,7 +134,7 @@ export function CompanyOverview({ claims }: Props) {
               <span className="text-sm font-medium">Official Website</span>
             </div>
             <Link
-              href="https://www.aetna.com/"
+              href="https://www.hioscar.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-blue-600 underline hover:text-blue-500"
@@ -148,7 +148,7 @@ export function CompanyOverview({ claims }: Props) {
               <PhoneCall className="h-5 w-5 text-green-600" />
               <span className="text-sm font-medium">Customer Service</span>
             </div>
-            <p className="text-sm">1-800-872-3862</p>
+            <p className="text-sm">1-855-672-2788</p>
           </div>
 
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
@@ -157,7 +157,7 @@ export function CompanyOverview({ claims }: Props) {
               <span className="text-sm font-medium">Drug Formulary</span>
             </div>
             <Link
-              href="https://www.aetna.com/individuals-families/find-a-medication.html"
+              href="https://assets.ctfassets.net/plyq12u1bv8a/PikfGAejliNqFZLatnOuo/79b3d819e87c61ca5aa755f4af3a837f/Oscar_4T_AZ_STND_Member_Doc__January_2025__as_of_08302024.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-blue-600 underline hover:text-blue-500"

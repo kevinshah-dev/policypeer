@@ -39,7 +39,7 @@ export default async function CompanyProfile() {
   }));
 
   const { data: policiesData, error: policiesError } = await supabase
-    .from("policies")
+    .from("healthpolicies")
     .select("*")
     .eq("company", "oscar-health")
     .order("created_at", { ascending: false });

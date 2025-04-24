@@ -28,8 +28,21 @@ type Policy = {
   created_at: string;
 };
 
+type HealthPolicy = {
+  id: string;
+  company: string;
+  premium: number;
+  coverageType: string;
+  deductible: number;
+  coverageLimit: number;
+  submissionType: string;
+  planDetails: string;
+  created_at: string;
+  oopMax: number;
+};
+
 type PolicyInformationProps = {
-  policies: Policy[];
+  policies: Policy[] | HealthPolicy[];
   type: string;
 };
 
@@ -37,6 +50,8 @@ export function PolicyInformationMain({
   policies,
   type,
 }: PolicyInformationProps) {
+  const isHealth = type.toLowerCase() === "health";
+
   const formatCurrency = (value: number) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
@@ -63,7 +78,9 @@ export function PolicyInformationMain({
                   <TableHead className="text-sm">Type</TableHead>
                   <TableHead className="text-sm">Premium</TableHead>
                   <TableHead className="text-sm">Deductible</TableHead>
-                  <TableHead className="text-sm">Coverage Limit</TableHead>
+                  <TableHead className="text-sm">
+                    {isHealth ? "Out-of-Pocket Max" : "Coverage Limit"}
+                  </TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -73,7 +90,9 @@ export function PolicyInformationMain({
                     <TableCell>{formatCurrency(policy.premium)}</TableCell>
                     <TableCell>{formatCurrency(policy.deductible)}</TableCell>
                     <TableCell>
-                      {formatCurrency(policy.coverageLimit)}
+                      {isHealth
+                        ? formatCurrency((policy as HealthPolicy).oopMax ?? 0)
+                        : formatCurrency(policy.coverageLimit)}
                     </TableCell>
                   </TableRow>
                 ))}
