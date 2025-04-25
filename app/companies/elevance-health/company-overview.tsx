@@ -148,29 +148,12 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Customer Service */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <PhoneCall className="h-5 w-5 text-green-600" />
               <span className="text-sm font-medium">Customer Service</span>
             </div>
             <p className="text-sm">833-401-1577</p>
-          </div>
-
-          {/* Drug Formulary PDF */}
-          <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
-            <div className="flex items-center gap-2">
-              <FileText className="h-5 w-5 text-purple-600" />
-              <span className="text-sm font-medium">Drug Formulary</span>
-            </div>
-            <Link
-              href="https://www.aetna.com/individuals-families/find-a-medication.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium text-blue-600 underline hover:text-blue-500"
-            >
-              Medication Search
-            </Link>
           </div>
         </div>
       </Card>

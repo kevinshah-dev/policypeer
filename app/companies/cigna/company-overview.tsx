@@ -50,7 +50,6 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Single statistic: Claims Approval Rate */}
           <div className="p-3 mb-4 md:mb-6 rounded-lg bg-gray-50 border">
             <div className="text-sm text-muted-foreground">
               Claims Approval Rate
@@ -148,7 +147,6 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Customer Service */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <PhoneCall className="h-5 w-5 text-green-600" />
@@ -157,14 +155,13 @@ export function CompanyOverview({ claims }: Props) {
             <p className="text-sm">1-800-872-3862</p>
           </div>
 
-          {/* Drug Formulary PDF */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <FileText className="h-5 w-5 text-purple-600" />
               <span className="text-sm font-medium">Drug Formulary</span>
             </div>
             <Link
-              href="https://www.aetna.com/individuals-families/find-a-medication.html"
+              href="https://www.cigna.com/health-care-providers/pharmacy/formulary-drug-lists"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-blue-600 underline hover:text-blue-500"

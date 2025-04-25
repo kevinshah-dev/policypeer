@@ -77,7 +77,7 @@ export default async function CompanyProfile() {
                 <div className="flex items-center justify-start  md:justify-start md:items-start md:flex-col">
                   <div className="flex items-center gap-2">
                     <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                    <span className="ml-1 font-semibold">4.2</span>
+                    <span className="ml-1 font-semibold">3.4</span>
                     <span className="text-muted-foreground ml-1 text-xs md:text-base">
                       (34 Reviews)
                     </span>

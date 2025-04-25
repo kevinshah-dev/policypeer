@@ -159,7 +159,7 @@ export function CompanyOverview({ claims }: Props) {
               <span className="text-sm font-medium">Drug Formulary</span>
             </div>
             <Link
-              href="https://www.aetna.com/individuals-families/find-a-medication.html"
+              href="https://www.uhc.com/medicare/alphadog/AAUT25HM0255400_000"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-blue-600 underline hover:text-blue-500"

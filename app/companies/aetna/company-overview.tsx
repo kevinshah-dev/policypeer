@@ -39,7 +39,6 @@ export function CompanyOverview({ claims }: Props) {
   return (
     <div className="space-y-6 p-4 md:p-0 flex-grow">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-        {/* CLAIMS TABLE CARD */}
         <Card className="p-4 md:p-6">
           <div className="flex items-center justify-between mb-3 md:mb-4">
             <h2 className="text-xl font-semibold">Claims History</h2>
@@ -146,7 +145,6 @@ export function CompanyOverview({ claims }: Props) {
             </Link>
           </div>
 
-          {/* Customer Service */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <PhoneCall className="h-5 w-5 text-green-600" />
@@ -155,7 +153,6 @@ export function CompanyOverview({ claims }: Props) {
             <p className="text-sm">1-800-872-3862</p>
           </div>
 
-          {/* Drug Formulary PDF */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <FileText className="h-5 w-5 text-purple-600" />

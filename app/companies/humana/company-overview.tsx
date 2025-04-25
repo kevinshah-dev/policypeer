@@ -157,7 +157,7 @@ export function CompanyOverview({ claims }: Props) {
               <span className="text-sm font-medium">Drug Formulary</span>
             </div>
             <Link
-              href="https://www.aetna.com/individuals-families/find-a-medication.html"
+              href="https://www.humana.com/pharmacy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm font-medium text-blue-600 underline hover:text-blue-500"
