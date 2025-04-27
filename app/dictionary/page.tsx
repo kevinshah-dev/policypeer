@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback, startTransition } from "react";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,10 +12,20 @@ import Link from "next/link";
 import { montserrat } from "@/lib/fonts/fonts";
 import { DICTIONARY_DATA } from "@/lib/dictionarydata";
 import { DictionaryEntry } from "@/lib/dictionarydata";
+import { useRouter } from "next/navigation";
+
+function getRandomEntry(
+  entries: DictionaryEntry[]
+): DictionaryEntry | undefined {
+  if (!entries.length) return undefined;
+  const idx = Math.floor(Math.random() * entries.length);
+  return entries[idx];
+}
 
 export default function InsuranceDictionary() {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredEntries, setFilteredEntries] = useState<DictionaryEntry[]>([]);
+  const router = useRouter();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const term = e.target.value;
@@ -30,6 +40,15 @@ export default function InsuranceDictionary() {
       setFilteredEntries(results);
     }
   };
+
+  const handleLuckyClick = useCallback(() => {
+    const random = getRandomEntry(DICTIONARY_DATA);
+    if (!random) return; // edge-case: no data
+
+    startTransition(() => {
+      router.push(`/dictionary/${random.slug}`);
+    });
+  }, [router]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -52,6 +71,16 @@ export default function InsuranceDictionary() {
               value={searchTerm}
               onChange={handleSearchChange}
             />
+          </div>
+          <div className="flex justify-center mt-6">
+            <Button
+              variant="secondary"
+              className="font-semibold"
+              onClick={handleLuckyClick}
+              aria-label="Jump to a random dictionary entry"
+            >
+              I&apos;m Feeling Lucky
+            </Button>
           </div>
         </div>
 

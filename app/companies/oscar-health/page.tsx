@@ -12,7 +12,7 @@ import {
   FileCheck,
 } from "lucide-react";
 import { CompanyOverview } from "./company-overview";
-import { CompanyReviews } from "./company-reviews";
+import { CompanyReviews } from "@/components/companyreviews";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
 import { supabase } from "@/lib/supabase";
@@ -40,6 +40,12 @@ export default async function CompanyProfile() {
 
   const { data: policiesData, error: policiesError } = await supabase
     .from("healthpolicies")
+    .select("*")
+    .eq("company", "oscar-health")
+    .order("created_at", { ascending: false });
+
+  const { data: reviewData, error: reviewError } = await supabase
+    .from("reviews")
     .select("*")
     .eq("company", "oscar-health")
     .order("created_at", { ascending: false });
@@ -128,7 +134,10 @@ export default async function CompanyProfile() {
                   <CompanyOverview claims={formattedClaims.slice(0, 5) ?? []} />
                 </TabsContent>
                 <TabsContent value="reviews">
-                  <CompanyReviews />
+                  <CompanyReviews
+                    reviews={reviewData ?? []}
+                    companySlug="oscar-health"
+                  />
                 </TabsContent>
                 <TabsContent value="claims">
                   <ClaimHistoryMain claims={formattedClaims ?? []} />

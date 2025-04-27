@@ -6,7 +6,7 @@ export default async function CompaniesPage() {
     .from("companies")
     .select("*")
     .order("name");
-  console.log("companies", companies);
+  //console.log("companies", companies);
 
   if (error) {
     console.error("Error fetching companies:", error.message);

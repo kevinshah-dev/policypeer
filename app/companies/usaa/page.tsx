@@ -12,7 +12,7 @@ import {
   FileCheck,
 } from "lucide-react";
 import { CompanyOverview } from "./company-overview";
-import { CompanyReviews } from "./company-reviews";
+import { CompanyReviews } from "@/components/companyreviews";
 import { ClaimHistoryMain } from "@/components/claimhistory";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
@@ -44,8 +44,14 @@ export default async function CompanyProfile() {
     .eq("company", "usaa")
     .order("created_at", { ascending: false });
 
-  console.log("pre formattedClaims", data);
-  console.log("Claims Data:", formattedClaims);
+  const { data: reviewData, error: reviewError } = await supabase
+    .from("reviews")
+    .select("*")
+    .eq("company", "usaa")
+    .order("created_at", { ascending: false });
+
+  //console.log("pre formattedClaims", data);
+  //console.log("Claims Data:", formattedClaims);
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
       <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
@@ -80,7 +86,8 @@ export default async function CompanyProfile() {
                     <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                     <span className="ml-1 font-semibold">4.8</span>
                     <span className="text-muted-foreground ml-1 text-xs md:text-base">
-                      (49 Reviews)
+                      ({reviewData?.length ?? 0} Review
+                      {(reviewData?.length ?? 0) !== 1 ? "s" : ""})
                     </span>
                   </div>
                 </div>
@@ -130,7 +137,10 @@ export default async function CompanyProfile() {
                   <CompanyOverview claims={formattedClaims.slice(0, 5) ?? []} />
                 </TabsContent>
                 <TabsContent value="reviews">
-                  <CompanyReviews />
+                  <CompanyReviews
+                    reviews={reviewData ?? []}
+                    companySlug="usaa"
+                  />
                 </TabsContent>
                 <TabsContent value="claims">
                   <ClaimHistoryMain claims={formattedClaims ?? []} />

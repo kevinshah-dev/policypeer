@@ -99,13 +99,13 @@ export const DICTIONARY_DATA: DictionaryEntry[] = [
     definition:
       "Special Needs Plans (SNPs) are a type of Medicare Advantage plan designed specifically for individuals with certain chronic conditions, disabilities, or those who are dually eligible for Medicare and Medicaid. SNPs provide tailored healthcare services and support to meet the unique needs of these populations.",
     category: "Health Insurance",
-    slug: slugify("special-needs-plans"),
+    slug: slugify("snp"),
   },
   {
     term: "Small Business Plans",
     definition:
       "Small Business Plans are insurance policies designed to provide coverage for small businesses, including health insurance for employees, liability coverage, and property insurance. These plans help protect the business and its employees from financial losses due to unforeseen events.",
     category: "General",
-    slug: slugify("small-business-plans"),
+    slug: slugify("smallbusinessplans"),
   },
 ];

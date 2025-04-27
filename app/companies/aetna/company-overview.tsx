@@ -99,7 +99,6 @@ export function CompanyOverview({ claims }: Props) {
           </div>
         </Card>
 
-        {/* RATING BREAKDOWN CARD */}
         <Card className="p-4 md:p-6">
           <h2 className="text-xl font-semibold mb-4 md:mb-6">
             Rating Breakdown
@@ -129,7 +128,6 @@ export function CompanyOverview({ claims }: Props) {
       <Card className="p-4 md:p-6 space-y-4">
         <h2 className="text-xl font-bold">Quick Links</h2>
         <div className="space-y-3">
-          {/* Official Website */}
           <div className="flex items-center justify-between bg-gray-50 p-3 rounded-md">
             <div className="flex items-center gap-2">
               <Globe2 className="h-5 w-5 text-blue-600" />

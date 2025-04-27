@@ -90,7 +90,6 @@ export default function CompaniesClient({
       <main className="container mx-auto px-4 py-8 space-y-6">
         <h1 className="text-2xl font-bold">All Insurance Companies</h1>
 
-        {/* Search */}
         <div className="flex items-center space-x-2">
           <Input
             placeholder="Search by Company Name"
@@ -100,7 +99,6 @@ export default function CompaniesClient({
           />
         </div>
 
-        {/* Table */}
         <Card className="p-4 overflow-x-auto">
           <Table className="table-auto w-full border-collapse">
             <TableHeader>

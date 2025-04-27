@@ -12,7 +12,7 @@ import {
   FileCheck,
 } from "lucide-react";
 import { CompanyOverview } from "./company-overview";
-import { CompanyReviews } from "./company-reviews";
+import { CompanyReviews } from "@/components/companyreviews";
 import { ClaimHistoryMain } from "@/components/claimhistory";
 import { NavBar } from "@/components/navbar";
 import { navLinks } from "@/lib/navigation";
@@ -29,7 +29,7 @@ export default async function CompanyProfile() {
     .select("*")
     .eq("company", "american-family");
 
-  console.log("Claims Data:", data);
+  //console.log("Claims Data:", data);
 
   const formattedClaims = (data ?? []).map((claim: Claim) => ({
     ...claim,
@@ -42,6 +42,12 @@ export default async function CompanyProfile() {
 
   const { data: policiesData, error: policiesError } = await supabase
     .from("policies")
+    .select("*")
+    .eq("company", "american-family")
+    .order("created_at", { ascending: false });
+
+  const { data: reviewData, error: reviewError } = await supabase
+    .from("reviews")
     .select("*")
     .eq("company", "american-family")
     .order("created_at", { ascending: false });
@@ -130,7 +136,10 @@ export default async function CompanyProfile() {
                   <CompanyOverview claims={formattedClaims.slice(0, 5) ?? []} />
                 </TabsContent>
                 <TabsContent value="reviews">
-                  <CompanyReviews />
+                  <CompanyReviews
+                    reviews={reviewData ?? []}
+                    companySlug="american-family"
+                  />
                 </TabsContent>
                 <TabsContent value="claims">
                   <ClaimHistoryMain claims={formattedClaims ?? []} />
