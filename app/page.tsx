@@ -32,6 +32,7 @@ type InsuranceProviders = {
   car: InsuranceProvider[];
   health: InsuranceProvider[];
   home: InsuranceProvider[];
+  notFeatured?: InsuranceProvider[];
 };
 
 type NavLink = {
@@ -89,6 +90,9 @@ export default function Home() {
       { name: "Chubb", premium: "$82 - $470/mo", rating: 4.1 },
       { name: "Farmers Home", premium: "$216 - $317/mo", rating: 3.8 },
       { name: "Amica", premium: "$125 - $251/mo", rating: 4.3 },
+    ],
+    notFeatured: [
+      { name: "Oscar Health", premium: "500 - $750/mo", rating: 2.7 },
     ],
   };
 

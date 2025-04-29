@@ -109,7 +109,7 @@ export default function PriceCalculator() {
           : "None"
       }, 
       Coverage Level: ${formData.coverageLevel}. 
-      Please return only the estimated monthly premium as a plain string.`;
+      Please return only the estimated monthly premium as a plain string. Again, do not include any other text or formatting, just give me the number that you calculate.`;
 
       const completion = await openai.chat.completions.create({
         messages: [{ role: "user", content: query }],
