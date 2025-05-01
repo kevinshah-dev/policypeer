@@ -151,7 +151,7 @@ export default function AddHealthPolicy() {
             type="button"
             onClick={() => fileInputRef.current?.click()}
             disabled={uploading}
-            className="flex items-center justify-center gap-2 text-blue-600 hover:underline disabled:opacity-50"
+            className="flex mx-auto items-center justify-center gap-2 text-blue-600 hover:underline disabled:opacity-50"
           >
             <Upload className="h-4 w-4" />
             {uploading ? "Uploading…" : "Upload your policy document"}
