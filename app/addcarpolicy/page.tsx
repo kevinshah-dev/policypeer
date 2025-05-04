@@ -16,7 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
 import { Upload } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import {
@@ -31,7 +31,9 @@ import Footer from "@/components/footer";
 
 export default function AddCarPolicy() {
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const [showModal, setShowModal] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
   const [formData, setFormData] = useState({
     company: "",
@@ -45,6 +47,7 @@ export default function AddCarPolicy() {
     vehicleModel: "",
     vehicleYear: "",
     mileage: "",
+    policy_doc_path: "",
   });
 
   const handleCompanyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,8 +114,38 @@ export default function AddCarPolicy() {
     }
   };
 
+  const onSelectFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    try {
+      const fd = new FormData();
+      fd.append("file", file);
+
+      const res = await fetch("/api/upload", { method: "POST", body: fd });
+      const json = await res.json();
+
+      if (!res.ok) throw new Error(json.error || "Upload failed");
+      setFormData((f) => ({ ...f, policy_doc_path: json.path }));
+      alert("Document attached ✔︎");
+    } catch (err) {
+      console.error(err);
+      alert("Upload failed");
+    } finally {
+      setUploading(false);
+    }
+  };
+
   return (
     <>
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="application/pdf,image/*"
+        className="hidden"
+        onChange={onSelectFile}
+      />
       <Dialog open={showModal} onOpenChange={setShowModal}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
@@ -126,13 +159,21 @@ export default function AddCarPolicy() {
 
       <div className="container max-w-2xl mx-auto py-12 px-4">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold mb-2">Add Your Insurance Policy</h1>
-          <div className="flex items-center justify-center gap-2">
+          <h1 className="text-3xl font-bold mb-2">
+            Add Your Car Insurance Policy
+          </h1>
+          <button
+            type="button"
+            onClick={() => fileInputRef.current?.click()}
+            disabled={uploading}
+            className="flex mx-auto items-center justify-center gap-2 text-blue-600 hover:underline disabled:opacity-50"
+          >
             <Upload className="h-4 w-4" />
-            <Link href="#" className="text-blue-600 hover:underline">
-              Upload your policy document to verify your submission
-            </Link>
-          </div>
+            {uploading ? "Uploading…" : "Upload your policy document"}
+          </button>
+          {formData.policy_doc_path && (
+            <p className="text-sm text-green-600 mt-1">Document attached ✔︎</p>
+          )}
         </div>
 
         <Card>
