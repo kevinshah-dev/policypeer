@@ -16,7 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
 import { Upload } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { supabase, supabaseService } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import {
@@ -30,26 +30,47 @@ import Footer from "@/components/footer";
 import { Checkbox } from "@/components/ui/checkbox";
 import { v4 as uuid } from "uuid";
 
+type HealthPolicyInsert = {
+  company: string;
+  premium: string;
+  coverageType: string;
+  deductible: string;
+  coverageLimit: string;
+  planDetails: string;
+  coinsurance: string;
+  tier: string;
+  networkType: string;
+  policy_doc_path: string;
+  user_id: string | null; // Assuming user_id can be null
+};
+
 export default function AddHealthPolicy() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showModal, setShowModal] = useState(false);
   const [isCertified, setIsCertified] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [session, setSession] = useState<any>(null);
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<HealthPolicyInsert>({
     company: "",
     premium: "",
     coverageType: "",
     deductible: "",
     coverageLimit: "",
     planDetails: "",
-    submissionType: "new",
     coinsurance: "",
     tier: "",
     networkType: "",
     policy_doc_path: "",
+    user_id: "",
   });
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data?.session);
+    });
+  }, []);
 
   const handleCompanyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, company: e.target.value });
@@ -67,10 +88,6 @@ export default function AddHealthPolicy() {
     setFormData({ ...formData, deductible: e.target.value });
   };
 
-  const handleSubmissionTypeChange = (value: string) => {
-    setFormData({ ...formData, submissionType: value });
-  };
-
   const handleCoverageLimitChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -85,6 +102,12 @@ export default function AddHealthPolicy() {
 
   const handleSubmit = async () => {
     try {
+      const dataForInsert: HealthPolicyInsert = { ...formData };
+      if (session) {
+        dataForInsert.user_id = session.user.id;
+      } else {
+        dataForInsert.user_id = null;
+      }
       const { error } = await supabase.from("healthpolicies").insert(formData);
 
       if (error) throw error;

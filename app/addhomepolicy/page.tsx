@@ -1,7 +1,6 @@
-// app/(dashboard)/addhomepolicy/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Upload } from "lucide-react";
@@ -29,9 +28,24 @@ import {
 import { CompanySelect } from "@/components/selectcomponents/companyselect";
 import Footer from "@/components/footer";
 
+type HomePolicyInsert = {
+  company: string;
+  monthlyPremium: string;
+  coverageForm: string;
+  deductible: string;
+  dwellingCoverage: string;
+  liabilityCoverage: string;
+  yearBuilt: string;
+  roofAge: string;
+  zipCode: string;
+  planDetails: string;
+  user_id: string | null;
+};
+
 export default function AddHomePolicy() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
+  const [session, setSession] = useState<any>(null);
 
   const [formData, setFormData] = useState({
     company: "",
@@ -44,7 +58,14 @@ export default function AddHomePolicy() {
     roofAge: "",
     zipCode: "",
     planDetails: "",
+    user_id: "",
   });
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data?.session);
+    });
+  }, []);
 
   const handleInput =
     (field: keyof typeof formData) =>
@@ -53,7 +74,14 @@ export default function AddHomePolicy() {
 
   const handleSubmit = async () => {
     try {
-      const { error } = await supabase.from("policies").insert({
+      const dataForInsert: HomePolicyInsert = { ...formData };
+      if (session) {
+        dataForInsert.user_id = session.user.id;
+      } else {
+        dataForInsert.user_id = null;
+      }
+
+      const { error } = await supabase.from("homepolicies").insert({
         ...formData,
         insuranceType: "home",
       });
@@ -100,7 +128,7 @@ export default function AddHomePolicy() {
             <section className="space-y-4">
               <h2 className="text-xl font-semibold">Insurer & Premium</h2>
 
-              <div>
+              <div className="flex items-center gap-2">
                 <Label>Insurance Company</Label>
                 <CompanySelect
                   value={formData.company}

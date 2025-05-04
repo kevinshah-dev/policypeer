@@ -16,7 +16,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import Link from "next/link";
 import { Upload } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import {
@@ -29,26 +29,47 @@ import { CompanySelect } from "@/components/selectcomponents/companyselect";
 import { VehicleSelect } from "@/components/selectcomponents/vehicleselect";
 import Footer from "@/components/footer";
 
+type CarPolicyInsert = {
+  company: string;
+  premium: string;
+  coverageType: string;
+  deductible: string;
+  coverageLimit: string;
+  planDetails: string;
+  vehicleMake: string;
+  vehicleModel: string;
+  vehicleYear: string;
+  mileage: string;
+  policy_doc_path: string;
+  user_id?: string | null;
+};
+
 export default function AddCarPolicy() {
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [showModal, setShowModal] = useState(false);
   const [uploading, setUploading] = useState(false);
-
-  const [formData, setFormData] = useState({
+  const [session, setSession] = useState<any>(null);
+  const [formData, setFormData] = useState<CarPolicyInsert>({
     company: "",
     premium: "",
     coverageType: "",
     deductible: "",
     coverageLimit: "",
     planDetails: "",
-    submissionType: "new",
     vehicleMake: "",
     vehicleModel: "",
     vehicleYear: "",
     mileage: "",
     policy_doc_path: "",
+    user_id: "",
   });
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data?.session);
+    });
+  }, []);
 
   const handleCompanyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, company: e.target.value });
@@ -64,10 +85,6 @@ export default function AddCarPolicy() {
 
   const handleDeductibleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, deductible: e.target.value });
-  };
-
-  const handleSubmissionTypeChange = (value: string) => {
-    setFormData({ ...formData, submissionType: value });
   };
 
   const handleCoverageLimitChange = (
@@ -100,6 +117,13 @@ export default function AddCarPolicy() {
 
   const handleSubmit = async () => {
     try {
+      const dataForInsert: CarPolicyInsert = { ...formData };
+      if (session) {
+        dataForInsert.user_id = session.user.id;
+      } else {
+        dataForInsert.user_id = null;
+      }
+
       const { error } = await supabase.from("policies").insert(formData);
 
       if (error) throw error;
@@ -314,23 +338,6 @@ export default function AddCarPolicy() {
                       className="h-24"
                       onChange={handlePlanDetailsChange}
                     />
-                  </div>
-                  <div>
-                    <Label className="mb-2 block">Submission Type</Label>
-                    <RadioGroup
-                      defaultValue="new"
-                      className="flex gap-4"
-                      onValueChange={handleSubmissionTypeChange}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="new" id="new" />
-                        <Label htmlFor="new">New Policy</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="existing" id="existing" />
-                        <Label htmlFor="existing">Existing Policy</Label>
-                      </div>
-                    </RadioGroup>
                   </div>
                 </div>
               </div>
