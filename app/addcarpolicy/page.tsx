@@ -124,7 +124,7 @@ export default function AddCarPolicy() {
         dataForInsert.user_id = null;
       }
 
-      const { error } = await supabase.from("policies").insert(formData);
+      const { error } = await supabase.from("policies").insert(dataForInsert);
 
       if (error) throw error;
 

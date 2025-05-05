@@ -108,7 +108,9 @@ export default function AddHealthPolicy() {
       } else {
         dataForInsert.user_id = null;
       }
-      const { error } = await supabase.from("healthpolicies").insert(formData);
+      const { error } = await supabase
+        .from("healthpolicies")
+        .insert(dataForInsert);
 
       if (error) throw error;
 

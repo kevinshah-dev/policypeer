@@ -29,6 +29,8 @@ import { Upload } from "lucide-react";
 import { CompanySelect } from "@/components/selectcomponents/companyselect";
 import { Checkbox } from "@/components/ui/checkbox";
 import Footer from "@/components/footer";
+import { NavBar } from "@/components/navbar";
+import { navLinks } from "@/lib/navigation";
 
 type ClaimInsert = {
   insuranceType: string;
@@ -117,6 +119,7 @@ export default function AddInsuranceClaim() {
 
   return (
     <>
+      <NavBar logoText="PolicyPeer" navLinks={navLinks} signInHref="/login" />
       {/* SUCCESS DIALOG */}
       <Dialog open={showModal} onOpenChange={setShowModal}>
         <DialogContent className="sm:max-w-md">

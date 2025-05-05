@@ -82,7 +82,7 @@ export default function AddHomePolicy() {
       }
 
       const { error } = await supabase.from("homepolicies").insert({
-        ...formData,
+        ...dataForInsert,
         insuranceType: "home",
       });
       if (error) throw error;
