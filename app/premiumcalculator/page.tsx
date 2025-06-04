@@ -239,7 +239,7 @@ export default function PriceCalculator() {
                     id="tobaccoUse"
                     checked={formData.tobaccoUse}
                     onChange={handleCheckboxChange}
-                    className="h-4 w-4"
+                    className="appearance-none h-4 w-4 border border-gray-300 rounded-full checked:bg-red-600 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
                   />
                   <div className="space-y-1 leading-none">
                     <Label htmlFor="tobaccoUse">Tobacco Use</Label>
@@ -275,7 +275,7 @@ export default function PriceCalculator() {
                               e.target.checked
                             )
                           }
-                          className="h-4 w-4"
+                          className="appearance-none h-4 w-4 border border-gray-300 rounded-full checked:bg-red-600 checked:border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
                         />
                         <Label htmlFor={condition.id}>{condition.label}</Label>
                       </div>
